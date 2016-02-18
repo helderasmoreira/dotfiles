@@ -1,0 +1,13 @@
+[user]
+	name = Hélder Moreira
+	email = heldersantos.moreira@gmail.com
+
+[core]
+	pager = less -R
+[alias]
+	st = status
+	ci = commit -v
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
+	staged = diff --cached
+	aall = add -A -v
