@@ -10,6 +10,7 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
 	staged = diff --cached
-	aall = add -A -v
+	aa = add -A -v
+	dsf = "!git diff --color $@ | diff-so-fancy | less --tabs=1,5 -RFX"
 [push]
 	default = simple
