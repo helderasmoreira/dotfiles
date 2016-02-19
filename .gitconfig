@@ -4,6 +4,7 @@
 
 [core]
 	pager = less -R
+	excludesfile = /Users/heldermoreira/.gitignore_global
 [alias]
 	st = status
 	ci = commit -v
