@@ -23,3 +23,5 @@
 	added = yellow
 	changed = red
 	untracked = cyan
+[branch]
+	autosetupmerge = always
