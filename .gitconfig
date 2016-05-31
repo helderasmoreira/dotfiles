@@ -1,6 +1,7 @@
 [user]
 	name = Hélder Moreira
 	email = heldersantos.moreira@gmail.com
+	signingkey = 5436271A
 
 [core]
 	pager = less -R
@@ -24,4 +25,6 @@
 	changed = red
 	untracked = cyan
 [branch]
-	autosetupmerge = always
+	autosetupmerge = true
+[commit]
+	gpgsign = true
