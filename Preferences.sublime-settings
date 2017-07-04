@@ -1,0 +1,55 @@
+{
+  "added_words":
+  [
+    "validator",
+    "nop",
+    "misconfigured",
+    "params",
+    "Triggerise",
+    "Tiko"
+  ],
+  "color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+  "ensure_newline_at_eof_on_save": true,
+  "fade_fold_buttons": false,
+  "find_selected_text": true,
+  "font_face": "Input Sans Narrow",
+  "font_options":
+  [
+    "gray_antialias",
+    "subpixel_antialias"
+  ],
+  "font_size": 12,
+  "highlight_line": true,
+  "highlight_modified_tabs": true,
+  "ignored_packages":
+  [
+    "Vintage"
+  ],
+  "ignored_words":
+  [
+    "enrolment",
+    "http",
+    "questions/4652095",
+    "scala",
+    "stackoverflow"
+  ],
+  "indent_guide_options":
+  [
+    "draw_normal",
+    "draw_active"
+  ],
+  "material_theme_compact_panel": true,
+  "material_theme_small_tab": true,
+  "material_theme_tabs_autowidth": true,
+  "overlay_scroll_bars": "enabled",
+  "rulers":
+  [
+    100
+  ],
+  "scroll_past_end": true,
+  "spell_check": true,
+  "tab_size": 2,
+  "theme": "Material-Theme.sublime-theme",
+  "translate_tabs_to_spaces": true,
+  "trim_trailing_white_space_on_save": true
+}
