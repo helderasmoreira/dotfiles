@@ -6,9 +6,14 @@
     "misconfigured",
     "params",
     "Triggerise",
-    "Tiko"
+    "Tiko",
+    "movercado",
+    "mvc",
+    "behaviour",
+    "saturday",
+    "invalidatable"
   ],
-  "color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+  "color_scheme": "Packages/Theme - Flatland/Flatland Dark.tmTheme",
   "ensure_newline_at_eof_on_save": true,
   "fade_fold_buttons": false,
   "find_selected_text": true,
@@ -27,11 +32,14 @@
   ],
   "ignored_words":
   [
+    "Rafikis",
+    "auditable",
     "enrolment",
     "http",
     "questions/4652095",
     "scala",
-    "stackoverflow"
+    "stackoverflow",
+    "titleize"
   ],
   "indent_guide_options":
   [
@@ -49,7 +57,7 @@
   "scroll_past_end": true,
   "spell_check": true,
   "tab_size": 2,
-  "theme": "Material-Theme.sublime-theme",
+  "theme": "Flatland Dark.sublime-theme",
   "translate_tabs_to_spaces": true,
   "trim_trailing_white_space_on_save": true
 }
