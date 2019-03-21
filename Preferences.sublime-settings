@@ -11,18 +11,21 @@
 		"mvc",
 		"behaviour",
 		"saturday",
-		"invalidatable"
+		"invalidatable",
+		"proactiveness",
+		"Facebook",
+		"dailyprogrammer",
+		"upvoted"
 	],
 	"color_scheme": "Packages/Theme - Flatland/Flatland Dark.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
 	"find_selected_text": true,
-	"font_face": "Input Sans Narrow",
+	"font_face": "Input Sans Light",
 	"font_options":
 	[
 		"subpixel_antialias"
 	],
-	"font_size": 13,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
@@ -34,6 +37,7 @@
 		"Hélder",
 		"Rafikis",
 		"auditable",
+		"deprioritise",
 		"enrolment",
 		"http",
 		"questions/4652095",
