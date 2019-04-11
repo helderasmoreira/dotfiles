@@ -1,58 +1,42 @@
 {
 	"added_words":
 	[
-		"validator",
-		"nop",
-		"misconfigured",
-		"params",
 		"Triggerise",
 		"Tiko",
 		"movercado",
 		"mvc",
-		"behaviour",
-		"saturday",
-		"invalidatable",
-		"proactiveness",
 		"Facebook",
 		"dailyprogrammer",
-		"upvoted"
-	],
-	"color_scheme": "Packages/Theme - Flatland/Flatland Dark.tmTheme",
-	"ensure_newline_at_eof_on_save": true,
-	"fade_fold_buttons": false,
-	"find_selected_text": true,
-	"font_face": "Input Sans Light",
-	"font_options":
-	[
-		"subpixel_antialias"
-	],
-	"highlight_line": true,
-	"highlight_modified_tabs": true,
-	"ignored_packages":
-	[
-		"Vintage"
+		"upvoted",
+		"metadata"
 	],
 	"ignored_words":
 	[
 		"Hélder",
 		"Rafikis",
-		"auditable",
-		"deprioritise",
 		"enrolment",
 		"http",
-		"questions/4652095",
 		"scala",
-		"stackoverflow",
-		"titleize"
+		"stackoverflow"
 	],
+	"ensure_newline_at_eof_on_save": true,
+	"fade_fold_buttons": false,
+	"find_selected_text": true,
+	"font_face": "Input Mono",
+	"font_options":
+	[
+		"subpixel_antialias",
+		"gray_antialias"
+	],
+	"font_size": 12,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
 	"indent_guide_options":
 	[
 		"draw_normal",
 		"draw_active"
 	],
-	"material_theme_compact_panel": true,
-	"material_theme_small_tab": true,
-	"material_theme_tabs_autowidth": true,
+	"index_files": true,
 	"overlay_scroll_bars": "enabled",
 	"rulers":
 	[
@@ -61,7 +45,14 @@
 	"scroll_past_end": true,
 	"spell_check": true,
 	"tab_size": 2,
-	"theme": "Flatland Dark.sublime-theme",
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true
+	"trim_trailing_white_space_on_save": true,
+
+	// theme and color scheme
+	"theme": "Material-Theme.sublime-theme",
+	"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+
+	// Material Theme specific settings
+	"material_theme_compact_sidebar": true,
+	"material_theme_tabs_autowidth": true,
 }
