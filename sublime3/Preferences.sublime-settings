@@ -1,24 +1,4 @@
 {
-	"added_words":
-	[
-		"Triggerise",
-		"Tiko",
-		"movercado",
-		"mvc",
-		"Facebook",
-		"dailyprogrammer",
-		"upvoted",
-		"metadata"
-	],
-	"ignored_words":
-	[
-		"Hélder",
-		"Rafikis",
-		"enrolment",
-		"http",
-		"scala",
-		"stackoverflow"
-	],
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
 	"find_selected_text": true,
@@ -28,7 +8,7 @@
 		"subpixel_antialias",
 		"gray_antialias"
 	],
-	"font_size": 12,
+	"font_size": 14,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"indent_guide_options":
@@ -43,10 +23,14 @@
 		100
 	],
 	"scroll_past_end": true,
-	"spell_check": true,
+	"spell_check": false,
 	"tab_size": 2,
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
 
 	// theme and color scheme
 	"theme": "Material-Theme.sublime-theme",
