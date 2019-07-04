@@ -1,0 +1,6 @@
+autojump
+awscli
+diff-so-fancy
+git
+openssl
+pandoc
