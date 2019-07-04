@@ -1,0 +1,12 @@
+docker
+firefox
+iterm2
+macdown
+postman
+signal
+slack
+sublime-merge
+sublime-text
+teamviewer
+vagrant
+virtualbox
