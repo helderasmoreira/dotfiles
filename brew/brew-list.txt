@@ -1,1 +1,3 @@
 autojump
+heroku
+mysql-connector-c
