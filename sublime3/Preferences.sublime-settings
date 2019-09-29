@@ -1,5 +1,5 @@
 {
-	"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+	"color_scheme": "Packages/Material Theme/schemes/Material-Theme-Darker.tmTheme",
 	"downloader_precedence":
 	{
 		"osx":
@@ -31,8 +31,8 @@
 		"draw_active"
 	],
 	"index_files": true,
-	"material_theme_compact_sidebar": true,
 	"material_theme_compact_panel": true,
+	"material_theme_compact_sidebar": true,
 	"material_theme_tabs_autowidth": true,
 	"overlay_scroll_bars": "enabled",
 	"rulers":
@@ -42,8 +42,7 @@
 	"scroll_past_end": true,
 	"spell_check": false,
 	"tab_size": 2,
-	"theme": "Material-Theme.sublime-theme",
+	"theme": "Material-Theme-Darker.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true
 }
-
