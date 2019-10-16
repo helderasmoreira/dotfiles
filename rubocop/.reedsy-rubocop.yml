@@ -1,0 +1,8 @@
+inherit_from:
+  - ~/Work/dotfiles/rubocop/.rubocop.yml
+
+Style/SignalException:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
