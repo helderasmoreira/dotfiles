@@ -1,6 +1,3 @@
-Rails:
-  Enabled: true
-
 AllCops:
   Exclude:
     - '*/vendor/**/*'
@@ -27,7 +24,7 @@ Lint/Debugger:
 # Suppressing exceptions can be perfectly fine, and be it to avoid to
 # explicitly type nil into the rescue since that's what you want to return,
 # or suppressing LoadError for optional dependencies
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Enabled: false
 
 # Shadowing outer local variables with block parameters is often useful
