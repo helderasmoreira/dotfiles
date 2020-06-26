@@ -3,9 +3,3 @@ inherit_from:
 
 Style/SignalException:
   Enabled: false
-
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
-Style/WordArray:
-  EnforcedStyle: brackets
