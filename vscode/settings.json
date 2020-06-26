@@ -1,0 +1,71 @@
+{
+    "workbench.colorTheme": "Plastic",
+    "workbench.iconTheme": "vscode-great-icons",
+    "ruby.rubocop.configFilePath": "/Users/heldermoreira/Work/dotfiles/rubocop/.reedsy-rubocop.yml",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.fontFamily": "Input, Menlo, Monaco, 'Courier New', monospace",
+    "ruby.lintDebounceTime": 1000,
+    "ruby.useBundler": true,
+    "terminal.external.osxExec": "iTerm2.app",
+    "editor.rulers": [
+        120
+    ],
+    "editor.tabSize": 2,
+    "files.insertFinalNewline": true,
+    "ruby.intellisense": "rubyLocate",
+    "ruby.codeCompletion": "rcodetools",
+    "todo-tree.highlights.customHighlight": {
+        "TO THINK": {
+            "icon": "check",
+            "type": "line"
+        },
+    },
+    "todo-tree.general.tags": [
+        "BUG",
+        "FIXME",
+        "TODO",
+        "TO THINK"
+    ],
+    "editor.fontSize": 13,
+    "ruby.rubocop.executePath": "/Users/heldermoreira/.rbenv/shims/",
+    "ruby.rubocop.suppressRubocopWarnings": true,
+    "solargraph.diagnostics": true,
+    "solargraph.useBundler": true,
+    "todo-tree.tree.showScanModeButton": false,
+    "ruby.specSaveFile": true,
+    "workbench.editorAssociations": [
+
+    ],
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/node_modules/**": true,
+        "**/tmp/**": true
+    },
+    "workbench.colorCustomizations": {
+        "activityBarBadge.background": "#7CB342",
+        "activityBar.activeBorder": "#7CB342",
+        "list.activeSelectionForeground": "#7CB342",
+        "list.inactiveSelectionForeground": "#7CB342",
+        "list.highlightForeground": "#7CB342",
+        "scrollbarSlider.activeBackground": "#7CB34250",
+        "editorSuggestWidget.highlightForeground": "#7CB342",
+        "textLink.foreground": "#7CB342",
+        "progressBar.background": "#7CB342",
+        "pickerGroup.foreground": "#7CB342",
+        "tab.activeBorder": "#7CB342",
+        "notificationLink.foreground": "#7CB342",
+        "editorWidget.resizeBorder": "#7CB342",
+        "editorWidget.border": "#7CB342",
+        "settings.modifiedItemIndicator": "#7CB342",
+        "settings.headerForeground": "#7CB342",
+        "panelTitle.activeBorder": "#7CB342",
+        "breadcrumb.activeSelectionForeground": "#7CB342",
+        "menu.selectionForeground": "#7CB342",
+        "menubar.selectionForeground": "#7CB342",
+        "editor.findMatchBorder": "#7CB342",
+        "selection.background": "#7CB34240"
+    },
+    "materialTheme.accent": "Lime",
+    "ruby.specFocusTerminal": false
+}
