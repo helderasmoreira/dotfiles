@@ -3,3 +3,7 @@ inherit_from:
 
 Style/SignalException:
   Enabled: false
+
+Lint/UselessAccessModifier:
+  ContextCreatingMethods:
+    - concerning
