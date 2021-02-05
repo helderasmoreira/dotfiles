@@ -67,5 +67,10 @@
         "selection.background": "#7CB34240"
     },
     "materialTheme.accent": "Lime",
-    "ruby.specFocusTerminal": false
+    "window.zoomLevel": 0,
+    "markdown.extension.toc.updateOnSave": false,
+    "ruby.specFocusTerminal": false,
+    "ruby.specClearTerminal": false,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "editor.largeFileOptimizations": false
 }
