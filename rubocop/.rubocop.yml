@@ -94,3 +94,6 @@ Style/Alias:
 Lint/UselessAccessModifier:
   ContextCreatingMethods:
     - concerning
+
+Style/Documentation:
+  Enabled: false
