@@ -1,0 +1,6 @@
+inherit_from:
+  - ~/Work/dotfiles/rubocop/.reedsy-rubocop.yml
+
+Style/SymbolArray:
+  Enabled: true
+  EnforcedStyle: brackets

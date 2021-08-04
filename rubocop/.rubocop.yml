@@ -13,14 +13,6 @@ Layout/MultilineOperationIndentation:
 Layout/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
 
-Lint/AssignmentInCondition:
-  AllowSafeAssignment: false
-
-# There are valid cases, for example debugging Cucumber steps,
-# also they'll fail CI anyway
-Lint/Debugger:
-  Enabled: false
-
 # Suppressing exceptions can be perfectly fine, and be it to avoid to
 # explicitly type nil into the rescue since that's what you want to return,
 # or suppressing LoadError for optional dependencies
@@ -46,7 +38,7 @@ Metrics/LineLength:
 # Too short methods lead to extraction of single-use methods, which can make
 # the code easier to read (by naming things), but can also clutter the class
 Metrics/MethodLength:
-  Max: 20
+  Max: 30
 
 # This is just silly. Calling the argument `other` in all cases makes no sense.
 Naming/BinaryOperatorParameterName:
@@ -63,10 +55,6 @@ Style/CollectionMethods:
     # inject seems more common in the community.
     reduce: "inject"
 
-# Check with yard instead.
-Style/Documentation:
-  Enabled: false
-
 # String#% is by far the least verbose and only object oriented variant.
 Style/FormatString:
   EnforcedStyle: percent
@@ -82,24 +70,15 @@ Style/HashSyntax:
 Style/MethodCalledOnDoEndBlock:
   Enabled: true
 
-# Style preference
-Style/MethodDefParentheses:
-  Enabled: false
-
-# Either allow this style or don't. Marking it as safe with parenthesis
-# is silly. Let's try to live without them for now.
-Style/ParenthesesAroundCondition:
-  AllowSafeAssignment: false
-
-# has_key? and has_value? are far more readable than key? and value?
+# has_key? and has_value? are more readable than key? and value?
 Style/PreferredHashMethods:
   Enabled: false
 
 Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: comma
+  EnforcedStyleForMultiline: consistent_comma
 
 Style/TrailingCommaInArrayLiteral:
-  EnforcedStyleForMultiline: comma
+  EnforcedStyleForMultiline: consistent_comma
 
 # A specialized exception class will take one or more arguments and construct the message from it.
 # So both variants make sense.
@@ -111,3 +90,7 @@ Style/EmptyMethod:
 
 Style/Alias:
   EnforcedStyle: prefer_alias_method
+
+Lint/UselessAccessModifier:
+  ContextCreatingMethods:
+    - concerning
