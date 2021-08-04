@@ -1,2 +1,0 @@
-inherit_from:
-  - ~/Work/dotfiles/rubocop/.rubocop.yml

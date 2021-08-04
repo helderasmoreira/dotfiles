@@ -1,5 +1,5 @@
 inherit_from:
-  - ~/Work/dotfiles/rubocop/.reedsy-rubocop.yml
+  - ~/Work/dotfiles/rubocop/.rubocop.yml
 
 Style/SymbolArray:
   Enabled: true
