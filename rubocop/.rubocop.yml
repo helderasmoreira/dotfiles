@@ -1,7 +1,14 @@
 AllCops:
   Exclude:
-    - '*/vendor/**/*'
-    - '*/tmp/**/*'
+    - 'vendor/**/*'
+    - 'test/fixtures/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'log/**/*'
+    - 'tmp/**/*'
+    - 'app/views/**/*'
+    - 'config/environments/*'
+    - 'node_modules/**/*'
 
 # Indenting the chained dots beneath each other is not supported by this cop,
 # see https://github.com/bbatsov/rubocop/issues/1633
