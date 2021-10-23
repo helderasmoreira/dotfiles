@@ -1,3 +1,5 @@
 autojump
+awscli
+chruby
+ruby-install
 heroku
-mysql-connector-c
