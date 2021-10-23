@@ -1,5 +1,9 @@
+# movercado
+
 Host *.movercado.org
-    User movercado  
+    User movercado
+
+# reedsy old infrastructure - staging
 
 Host sinuous-axiom.staging.ssh-proxy.reedsy.com
   User deploy
@@ -11,6 +15,20 @@ Host staging-*.c.sinuous-axiom-223012.internal
   IdentityFile ~/.ssh/reedsy
   ProxyCommand ssh -q -W %h:%p sinuous-axiom.staging.ssh-proxy.reedsy.com
 
+# reedsy old infrastructure - production
+
+Host sinuous-axiom.production.ssh-proxy.reedsy.com
+  User deploy
+  ForwardAgent yes
+  IdentityFile ~/.ssh/reedsy
+
+Host *.c.sinuous-axiom-223012.internal
+  User deploy
+  IdentityFile ~/.ssh/reedsy
+  ProxyCommand ssh -q -W %h:%p sinuous-axiom.production.ssh-proxy.reedsy.com
+
+# reedsy new infrastructure — staging
+
 Host staging.ssh-proxy.reedsy.com
   User deploy
   ForwardAgent yes
@@ -20,6 +38,8 @@ Host staging-*.c.reedsy.internal
   User deploy
   IdentityFile ~/.ssh/reedsy
   ProxyCommand ssh -q -W %h:%p staging.ssh-proxy.reedsy.com
+
+# reedsy new infrastructure - production
 
 Host production.ssh-proxy.reedsy.com
   User deploy
@@ -31,8 +51,9 @@ Host production-*.c.reedsy.internal
   IdentityFile ~/.ssh/reedsy
   ProxyCommand ssh -q -W %h:%p production.ssh-proxy.reedsy.com
 
+# reedsy crawlers server
+
 Host crawlers-server
   Hostname 167.99.83.90
   User app
   IdentityFile ~/.ssh/reedsy
-
