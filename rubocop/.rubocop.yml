@@ -1,4 +1,5 @@
 AllCops:
+  NewCops: enable
   Exclude:
     - 'vendor/**/*'
     - 'test/fixtures/**/*'
@@ -39,7 +40,7 @@ Metrics/ClassLength:
   Max: 1500
 
 # Commonly used screens these days easily fit more than 80 characters.
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 
 # Too short methods lead to extraction of single-use methods, which can make
