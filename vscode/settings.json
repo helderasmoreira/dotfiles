@@ -1,7 +1,7 @@
 {
     "workbench.colorTheme": "Plastic",
     "workbench.iconTheme": "vscode-great-icons",
-    "ruby.rubocop.configFilePath": "/Users/heldermoreira/Work/dotfiles/rubocop/.reedsy-rubocop.yml",
+    "ruby.rubocop.configFilePath": "/Users/heldermoreira/Work/dotfiles/rubocop/.rubocop.yml",
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "editor.fontFamily": "Input, Menlo, Monaco, 'Courier New', monospace",
