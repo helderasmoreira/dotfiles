@@ -1,5 +1,0 @@
-autojump
-awscli
-chruby
-ruby-install
-heroku
