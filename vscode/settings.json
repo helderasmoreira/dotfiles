@@ -1,42 +1,17 @@
 {
     "workbench.colorTheme": "Plastic",
     "workbench.iconTheme": "vscode-great-icons",
-    "ruby.rubocop.configFilePath": "/Users/heldermoreira/Work/dotfiles/rubocop/.rubocop.yml",
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "editor.fontFamily": "Input, Menlo, Monaco, 'Courier New', monospace",
-    "ruby.lintDebounceTime": 1000,
-    "ruby.useBundler": true,
     "terminal.external.osxExec": "iTerm2.app",
     "editor.rulers": [
         120
     ],
     "editor.tabSize": 2,
     "files.insertFinalNewline": true,
-    "ruby.intellisense": "rubyLocate",
-    "ruby.codeCompletion": "rcodetools",
-    "todo-tree.highlights.customHighlight": {
-        "TO THINK": {
-            "icon": "check",
-            "type": "line"
-        },
-    },
-    "todo-tree.general.tags": [
-        "BUG",
-        "FIXME",
-        "TODO",
-        "TO THINK"
-    ],
     "editor.fontSize": 13,
-    "ruby.rubocop.executePath": "/Users/heldermoreira/.rbenv/shims/",
     "ruby.rubocop.suppressRubocopWarnings": true,
-    "solargraph.diagnostics": true,
-    "solargraph.useBundler": true,
-    "todo-tree.tree.showScanModeButton": false,
-    "ruby.specSaveFile": true,
-    "workbench.editorAssociations": [
-
-    ],
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/node_modules/**": true,
@@ -66,11 +41,9 @@
         "editor.findMatchBorder": "#7CB342",
         "selection.background": "#7CB34240"
     },
-    "materialTheme.accent": "Lime",
     "window.zoomLevel": 0,
-    "markdown.extension.toc.updateOnSave": false,
-    "ruby.specFocusTerminal": false,
-    "ruby.specClearTerminal": false,
     "diffEditor.ignoreTrimWhitespace": true,
-    "editor.largeFileOptimizations": false
+    "editor.largeFileOptimizations": false,
+    "ruby.specFocusTerminal": false,
+    "ruby.specClearTerminal": false
 }
