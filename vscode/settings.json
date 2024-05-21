@@ -1,9 +1,7 @@
 {
-    "workbench.colorTheme": "Plastic",
     "workbench.iconTheme": "vscode-great-icons",
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "editor.fontFamily": "Input, Menlo, Monaco, 'Courier New', monospace",
     "terminal.external.osxExec": "iTerm2.app",
     "editor.rulers": [
         120
@@ -11,39 +9,12 @@
     "editor.tabSize": 2,
     "files.insertFinalNewline": true,
     "editor.fontSize": 13,
-    "ruby.rubocop.suppressRubocopWarnings": true,
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/node_modules/**": true,
         "**/tmp/**": true
     },
-    "workbench.colorCustomizations": {
-        "activityBarBadge.background": "#7CB342",
-        "activityBar.activeBorder": "#7CB342",
-        "list.activeSelectionForeground": "#7CB342",
-        "list.inactiveSelectionForeground": "#7CB342",
-        "list.highlightForeground": "#7CB342",
-        "scrollbarSlider.activeBackground": "#7CB34250",
-        "editorSuggestWidget.highlightForeground": "#7CB342",
-        "textLink.foreground": "#7CB342",
-        "progressBar.background": "#7CB342",
-        "pickerGroup.foreground": "#7CB342",
-        "tab.activeBorder": "#7CB342",
-        "notificationLink.foreground": "#7CB342",
-        "editorWidget.resizeBorder": "#7CB342",
-        "editorWidget.border": "#7CB342",
-        "settings.modifiedItemIndicator": "#7CB342",
-        "settings.headerForeground": "#7CB342",
-        "panelTitle.activeBorder": "#7CB342",
-        "breadcrumb.activeSelectionForeground": "#7CB342",
-        "menu.selectionForeground": "#7CB342",
-        "menubar.selectionForeground": "#7CB342",
-        "editor.findMatchBorder": "#7CB342",
-        "selection.background": "#7CB34240"
-    },
     "window.zoomLevel": 0,
-    "diffEditor.ignoreTrimWhitespace": true,
     "editor.largeFileOptimizations": false,
-    "ruby.specFocusTerminal": false,
-    "ruby.specClearTerminal": false
+    "workbench.colorTheme": "Atom One Light",
 }
