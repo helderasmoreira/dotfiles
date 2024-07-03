@@ -9,8 +9,8 @@ source $ZSH/oh-my-zsh.sh
 # https://github.com/cantino/mcfly
 eval "$(mcfly init zsh)"
 
-# chruby
-source /usr/local/share/chruby/chruby.sh
+# rbenv
+eval "$(rbenv init - zsh)"
 
 ### BEGIN carwow dev
 
