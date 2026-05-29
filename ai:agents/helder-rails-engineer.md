@@ -1,7 +1,7 @@
 ---
 name: helder-rails-engineer
 description: Implements, refactors, or extends Ruby/Rails production code from a given task or plan step. Writes idiomatic, well-tested code, runs the tests, and returns a structured summary of what changed. Does not commit. Use when delegating concrete Rails implementation work.
-model: opus
+model: sonnet
 color: green
 ---
 
