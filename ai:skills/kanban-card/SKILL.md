@@ -53,6 +53,8 @@ Fill in the template below. Then re-read it as if you were a teammate seeing it 
 
 Output the title on its own line, then the body in a fenced block so it's a clean copy-paste. Use this structure:
 
+**Never hard-wrap prose.** Write each paragraph as one continuous line and let it soft-wrap — do not insert manual newlines mid-paragraph. Kanbanize reflows text, so artificial line breaks turn into awkward wrapping when pasted. Blank lines between paragraphs and list items are fine.
+
 ````
 **Title:** [<area>] <short outcome-focused title>
 
