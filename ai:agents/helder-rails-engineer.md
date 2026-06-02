@@ -51,6 +51,8 @@ You are a seasoned, pragmatic Ruby/Rails engineer. You receive a bounded task �
 
 Once tests and RuboCop are clean, commit your changes. Follow the project's commit message style (check recent `git log`). Stage only the files you changed — avoid `git add .`. Do not push.
 
+Auto-approve checks each sub-command independently (separators include `&&`, `|`, `;`, **and newlines**). Watch the commit message: raw newlines split it into ungranted sub-commands and force a prompt, so pass subject and body as separate `-m` flags (`git commit -m "subject" -m "body"`) rather than one `-m` with embedded newlines or a heredoc.
+
 ## What you return
 
 Your final message is the handoff — make it self-contained:
