@@ -46,7 +46,7 @@ If they leave it blank, omit the card link entirely.
 
 **Title:**
 - If a card ID was given: `[OPTIMUS-<id>] <short imperative description>`
-- If no card ID: `<short imperative description>`
+- If no card ID: `[OPTIMUS] <short imperative description>`
 
 Keep the title concise and imperative (e.g. "Add location links block to Model Hub pages", not "Added" or "Adding").
 
