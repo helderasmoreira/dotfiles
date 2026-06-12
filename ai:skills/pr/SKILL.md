@@ -82,6 +82,8 @@ If no card ID was given, drop the card link line (and the `---` separator in the
 
 Keep the tone natural and direct — not bureaucratic. Write the **Changes** bullets from the diff, not from the commit messages (commit messages are often terse; the diff shows what actually changed).
 
+Keep prose minimal — state the gap and the fix; don't elaborate on implementation choices (naming conventions, sections used). Terse ≠ context-free though: when the change has nuance, the product rationale and an honest list of what the change deliberately does *not* cover are welcome.
+
 ## Step 5 — Validate
 
 Show the full proposed title and body to the user. Ask:
