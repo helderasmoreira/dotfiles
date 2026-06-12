@@ -18,7 +18,23 @@
   `~/Work/dotfiles/ai:<thing>`, symlinked to `~/.claude/<thing>`. Write new
   ones there, not into project repos.
 
+## Testing
+
+- When writing or rewriting RSpec specs, follow existing repository
+  conventions for mocking/stubbing (e.g., how the deals service is stubbed)
+  — read a similar existing spec first before writing new test code.
+
+## Verification
+
+- Always read the actual source file before claiming it needs changes or
+  describing its behavior — do not trust subagent claims, stale copies in
+  `tmp_www_migration/`, or assumptions. Verify file paths and branches
+  before editing.
+
 ## Plans & scratch docs
 
 - Write plans/scratch to `~/Work/Carwow/claude-docs/<project>/`, never
   inside a repo.
+- Keep architecture/shaping/kanban docs concise and decision-focused, not
+  long and implementation-heavy. Lead with the decision, not the
+  exploration.
