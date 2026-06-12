@@ -37,6 +37,8 @@ If a clear technical change, spend a little time locating the relevant code so t
 
 If you discover the work is bigger or trickier than it looked, say so; flagging that early is exactly what a card is for.
 
+For **investigation/spike cards**, skip this step almost entirely — name the one relevant file if it's obvious, put source links in Background, and scope the card as "investigate, assess if our team can help, report back, agree next steps" rather than a fix. Don't fuss over exact metric targets or thresholds. Ask before doing heavier code exploration.
+
 ### 4. Decide on scope (split or not)
 
 If the user handed you a plan, a checklist, or several distinct tasks, don't silently merge or split them. Propose how you'd break it up — e.g. "this looks like 3 cards: X, Y, Z — want me to split it that way, or keep it as one?" — and let them decide before you draft.
@@ -65,7 +67,7 @@ Output the title on its own line, then the body in a fenced block so it's a clea
 
 ## Requirements
 
-<This is where the depth goes. A concrete, checkable list of what has to be true for this to be considered done. Be pragmatic but not prescriptive: describe the outcome and the real constraints, name the actual files / endpoints / flags / components involved, and cite prior PRs or decisions when they explain the shape of the work — but leave the implementer room to choose the approach. Call out edge cases, multi-country implications, and open questions.>
+<This is where the depth goes. A concrete, checkable list of what has to be true for this to be considered done. Be pragmatic but not prescriptive: describe the outcome and the real constraints, name the actual files / endpoints / flags / components involved, and cite prior PRs or decisions when they explain the shape of the work — but leave the implementer room to choose the approach. Call out edge cases, multi-country implications, and open questions. The audience is senior engineers: state *what* we want, *where* it's used, and *where* prior art lives — when a linked PoC or plan doc already covers the detail, link out rather than enumerating prescriptive bullets.>
 
 - ...
 - ...
