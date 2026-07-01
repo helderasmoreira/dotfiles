@@ -58,9 +58,11 @@ Show the drafted card to the user and get their sign-off before creating anythin
 If the **Kanbanize MCP** is connected, offer to create the card directly. On confirmation, call `create_card_batch` with:
 
 - `board_id: 48` (GYC - Optimus)
-- `lane_name: "Delivery"`
-- `column_name: "To Be Defined"`
+- `lane_name: "DELIVERY"`
+- `column_name: "To be Defined"`
 - `stickers_to_add: ["Needs Research"]` — signals the card needs a human review before it's picked up
+
+Use these strings exactly as written (casing matters). They're the confirmed names on board 48 as of this writing — if a call fails on an unknown lane/column/sticker, the board was likely reconfigured; re-check with `search_cards` on board "GYC - Optimus" and adjust.
 - `title`: the `[<area>] <title>` line (without the `**Title:**` prefix)
 - `description`: the Background / Requirements / Reviewers body
 
