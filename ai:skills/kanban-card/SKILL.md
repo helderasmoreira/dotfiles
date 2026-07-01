@@ -58,13 +58,14 @@ Show the drafted card to the user and get their sign-off before creating anythin
 If the **Kanbanize MCP** is connected, offer to create the card directly. On confirmation, call `create_card_batch` with:
 
 - `board_id: 48` (GYC - Optimus)
+- `workflow_name: "Cards workflow"` — the board has more than one workflow, so this is **required** or the call errors.
 - `lane_name: "DELIVERY"`
 - `column_name: "To be Defined"`
 - `stickers_to_add: ["Needs Research"]` — signals the card needs a human review before it's picked up
 
-Use these strings exactly as written (casing matters). They're the confirmed names on board 48 as of this writing — if a call fails on an unknown lane/column/sticker, the board was likely reconfigured; re-check with `search_cards` on board "GYC - Optimus" and adjust.
+Use these strings exactly as written (casing matters). They're the confirmed names on board 48 as of this writing — if a call fails on an unknown lane/column/sticker/workflow, the board was likely reconfigured; re-check with `search_cards` on board "GYC - Optimus" and adjust.
 - `title`: the `[<area>] <title>` line (without the `**Title:**` prefix)
-- `description`: the Background / Requirements / Reviewers body
+- `description`: the Background / Requirements / Reviewers body **serialized to HTML**. Draft and preview the card in Markdown (step 6) — that's what renders readably in chat for the user's sign-off — then convert only at this send step, because the Kanbanize description field renders HTML and shows Markdown literally (`##`, `**`, and blank-line paragraph breaks all leak through as raw text). Mechanical conversion, same wording, only the markup changes: `## Heading` → `<h2>Heading</h2>`, paragraphs → `<p>…</p>`, `**bold**` → `<strong>…</strong>`, `` `code` `` → `<code>…</code>`, bullet lists → `<ul><li>…</li></ul>`.
 
 After it's created, give the user the card URL/ID the tool returns.
 
