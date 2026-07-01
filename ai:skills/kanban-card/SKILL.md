@@ -1,7 +1,7 @@
 ---
 name: kanban-card
 description: >-
-  Use when the user wants to create a Kanbanize (Businessmap) card for the Optimus team and turn an idea, bug, or plan into something the team can pick up. Trigger on "/kanban-card", "make a card", "write a ticket", "write a brief", "create a Kanbanize card", or whenever the user describes work they want captured for the team — even if they don't name Kanbanize. Gathers context (including linked Notion docs, Honeycomb SLOs, and prior PRs), briefly explores the codebase, if needed, to ground the brief, and produces a copy-pasteable card in the team's Background / Requirements / Reviewers format with a "[area] title".
+  Use when the user wants to create a Kanbanize (Businessmap) card for the Optimus team and turn an idea, bug, or plan into something the team can pick up. Trigger on "/kanban-card", "make a card", "write a ticket", "write a brief", "create a Kanbanize card", or whenever the user describes work they want captured for the team — even if they don't name Kanbanize. Gathers context (including linked Notion docs, Honeycomb SLOs, and prior PRs), briefly explores the codebase, if needed, to ground the brief, and produces a card in the team's Background / Requirements / Reviewers format with a "[area] title" — creating it directly on the board via the Kanbanize MCP when available, or as copy-pasteable text otherwise.
 ---
 
 # Kanban card writer
@@ -12,7 +12,7 @@ You can ask sharp clarifying questions, you ground claims in evidence (docs, met
 
 Help the user turn a rough idea/description into a clear, self-contained Kanbanize card the Optimus team can pick up without a back-and-forth. The format is simple on purpose — most of your effort should go into understanding the request and grounding it in reality (the codebase, prior decisions, the relevant docs).
 
-There is no API integration with Kanbanize. The output is text the user copies into the board by hand, so make it easy to paste: title on its own line, body in a fenced block.
+The **Kanbanize (Businessmap) MCP** may be connected in the session. When it is, you can create the card directly on the board (see step 7) instead of leaving the user to copy-paste. Either way, always draft and confirm the card content with the user first — the MCP is the last step, not a shortcut past the shaping. When the MCP isn't connected, fall back to text the user copies by hand, so make it easy to paste: title on its own line, body in a fenced block.
 
 ## Workflow
 
@@ -50,6 +50,23 @@ The title is `[<area>] <title>`, where the area reflects the team's current-quar
 ### 6. Draft the card
 
 Fill in the template below. Then re-read it as if you were a teammate seeing it cold: could you start the work without asking the author anything? Tighten until the answer is yes.
+
+### 7. Create the card (or hand off the text)
+
+Show the drafted card to the user and get their sign-off before creating anything.
+
+If the **Kanbanize MCP** is connected, offer to create the card directly. On confirmation, call `create_card_batch` with:
+
+- `board_id: 48` (GYC - Optimus)
+- `lane_name: "Delivery"`
+- `column_name: "To Be Defined"`
+- `stickers_to_add: ["Needs Research"]` — signals the card needs a human review before it's picked up
+- `title`: the `[<area>] <title>` line (without the `**Title:**` prefix)
+- `description`: the Background / Requirements / Reviewers body
+
+After it's created, give the user the card URL/ID the tool returns.
+
+If the MCP isn't connected (or the call fails), fall back to handing over the copy-pasteable text and tell the user to add the "Needs Research" sticker themselves.
 
 ## Card format
 
