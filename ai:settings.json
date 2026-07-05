@@ -29,10 +29,12 @@
       "mcp__launchdarkly__get-flag",
       "mcp__claude_ai_Slack__slack_search_public_and_private"
     ],
+    "ask": [
+      "Read(**/.env*)"
+    ],
     "deny": [
       "Read(~/.ssh/**)",
-      "Read(~/.aws/**)",
-      "Read(**/.env*)"
+      "Read(~/.aws/**)"
     ]
   },
   "model": "claude-fable-5[1m]",
