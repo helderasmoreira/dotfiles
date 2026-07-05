@@ -1,7 +1,7 @@
 ---
 name: kanban-card
 description: >-
-  Use when the user wants to create a Kanbanize (Businessmap) card for the Optimus team and turn an idea, bug, or plan into something the team can pick up. Trigger on "/kanban-card", "make a card", "write a ticket", "write a brief", "create a Kanbanize card", or whenever the user describes work they want captured for the team — even if they don't name Kanbanize. Gathers context (including linked Notion docs, Honeycomb SLOs, and prior PRs), briefly explores the codebase, if needed, to ground the brief, and produces a card in the team's Background / Requirements / Reviewers format with a "[area] title" — creating it directly on the board via the Kanbanize MCP when available, or as copy-pasteable text otherwise.
+  Create a Kanbanize (Businessmap) card for the Optimus team from an idea, bug, or plan. Trigger on "/kanban-card", "make a card", "write a ticket", "write a brief", "create a Kanbanize card", or whenever the user describes work they want captured for the team — even if they don't name Kanbanize.
 ---
 
 # Kanban card writer

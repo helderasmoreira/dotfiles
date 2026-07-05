@@ -1,7 +1,7 @@
 ---
 name: experiment-status
 description: >-
-  Use when the user wants to know whether an A/B test / experiment is live. Trigger on "/experiment-status", "is X live?", "is the X test running?". The user passes the exact test name (the experiment NAME constant, no suffix). Reports live/not from the `-enter` flag in production and links to relevant flags. Read-only — never modifies flags.
+  Report whether an A/B test / experiment is live in production. Trigger on "/experiment-status", "is X live?", "is the X test running?". The user passes the exact test name (the experiment NAME constant, no suffix). Read-only.
 # Read-only by construction: auto-approve the one LD read, and remove every mutating tool.
 # Note: there is only an "allow only X" — disallowed-tools is an explicit denylist, so new LD write tools could be added later here too.
 allowed-tools: mcp__launchdarkly__get-flag
