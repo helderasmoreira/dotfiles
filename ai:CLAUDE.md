@@ -14,9 +14,9 @@
 
 ## Claude config
 
-- Personal skills/agents/output-styles live in my dotfiles:
-  `~/Work/dotfiles/ai:<thing>`, symlinked to `~/.claude/<thing>`. Write new
-  ones there, not into project repos.
+- Personal skills/agents live in my dotfiles: `~/Work/dotfiles/ai:<thing>`,
+  symlinked to `~/.claude/<thing>`. Write new ones there, not into project
+  repos.
 
 ## Testing
 
