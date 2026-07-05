@@ -28,6 +28,11 @@
       "WebFetch(domain:rubyllm.com)",
       "mcp__launchdarkly__get-flag",
       "mcp__claude_ai_Slack__slack_search_public_and_private"
+    ],
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(**/.env*)"
     ]
   },
   "model": "claude-fable-5[1m]",
