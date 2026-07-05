@@ -27,30 +27,26 @@ Use this to form an initial judgement: is this an **extended** or **short** PR?
 
 **Short** — small fixes, reverts, dependency bumps, trivial cleanup (one clear thing, no real context needed).
 
-## Step 2 — Choose the template
+## Step 2 — Choose the template and the card
 
-Tell the user which template you'd suggest and why (one sentence), then ask:
+If the **Kanbanize MCP** is connected, first try to find the card yourself: `search_cards` on board "GYC - Optimus" (board 48) using keywords from the branch name and commit subjects.
 
-> "I'd suggest the **extended** template — go with that, or switch to short?"
+Then ask both questions in a **single round** (one AskUserQuestion call), not two exchanges:
 
-Wait for their answer before continuing.
+1. **Template** — suggest one and say why in one sentence:
+   > "I'd suggest the **extended** template — go with that, or switch to short?"
+2. **Card** — if the search found a plausible match:
+   > "Looks like this is card <id> — '<card title>'. Right one? (or give me another ID / blank for none)"
 
-## Step 3 — Get the card ID
-
-If the **Kanbanize MCP** is connected, try to find the card yourself first: `search_cards` on board "GYC - Optimus" (board 48) using keywords from the branch name and commit subjects. If there's a plausible match, propose it:
-
-> "Looks like this is card <id> — '<card title>'. Right one? (or give me another ID / blank for none)"
-
-If the MCP isn't connected, the search finds nothing convincing, or the user rejects the match, ask:
-
-> "Kanbanize card ID? (leave blank if none)"
+   If the MCP isn't connected or the search found nothing convincing:
+   > "Kanbanize card ID? (leave blank if none)"
 
 Once you have an ID, the card URL is:
 `https://carwow.kanbanize.com/ctrl_board/48/cards/<id>/details/`
 
 If they leave it blank, omit the card link entirely.
 
-## Step 4 — Draft title and body
+## Step 3 — Draft title and body
 
 **Title:**
 - If a card ID was given: `[OPTIMUS-<id>] <short imperative description>`
@@ -92,7 +88,7 @@ Keep the tone natural and direct — not bureaucratic. Write the **Changes** bul
 
 Keep prose minimal — state the gap and the fix; don't elaborate on implementation choices (naming conventions, sections used). Terse ≠ context-free though: when the change has nuance, the product rationale and an honest list of what the change deliberately does *not* cover are welcome.
 
-## Step 5 — Validate
+## Step 4 — Validate
 
 Show the full proposed title and body to the user. Ask:
 
@@ -100,7 +96,7 @@ Show the full proposed title and body to the user. Ask:
 
 Iterate on feedback until they approve. Do not run `gh pr create` until they explicitly say yes.
 
-## Step 6 — Create the PR
+## Step 5 — Create the PR
 
 Push the branch first — `gh pr create` can't prompt for a push target in a non-interactive run:
 ```

@@ -20,7 +20,7 @@ Work through these in order, but stay lightweight — this should feel like a qu
 
 ### 1. Understand the request
 
-Read what the user gave you. If the intent, the affected users, or the definition of done is unclear, ask **1–3 targeted questions** — only the ones that actually change what goes on the card. Don't ask things you can answer yourself by looking at the code or the linked context. If the request is already clear, move on.
+Read what the user gave you. If the intent, the affected users, or the definition of done is unclear, ask **1–3 targeted questions** — only the ones that actually change what goes on the card. Don't ask things you can answer yourself by looking at the code or the linked context. Include the **area** question (see step 5) in this same round — one batch of questions, not a drip. If the request is already clear, move on (you'll still need the area before drafting).
 
 ### 2. Pull in external context
 
@@ -43,9 +43,9 @@ For **investigation/spike cards**, skip this step almost entirely — name the o
 
 If the user handed you a plan, a checklist, or several distinct tasks, don't silently merge or split them. Propose how you'd break it up — e.g. "this looks like 3 cards: X, Y, Z — want me to split it that way, or keep it as one?" — and let them decide before you draft.
 
-### 5. Ask for the area
+### 5. The area
 
-The title is `[<area>] <title>`, where the area reflects the team's current-quarter OKRs and changes each quarter, so there's no reliable default. **Ask the user which area to use** every time (you can suggest a guess from what you found, but confirm it). Keep the title short and outcome-first.
+The title is `[<area>] <title>`, where the area reflects the team's current-quarter OKRs and changes each quarter, so there's no reliable default — it must come from the user every time (you can suggest a guess, but confirm it). Ask it alongside the step-1 clarifying questions in one round; only ask it here, on its own, if step 1 needed no questions. Keep the title short and outcome-first.
 
 ### 6. Draft the card
 
