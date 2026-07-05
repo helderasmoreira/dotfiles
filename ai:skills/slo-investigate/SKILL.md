@@ -1,10 +1,8 @@
 ---
 name: slo-investigate
 description: >-
-  Investigate a breaching SLO. Trigger on "/slo-investigate", "what's causing the X SLO breach",
-  "investigate the CLS breach", "why is the latency SLO red". Queries Honeycomb for current SLO
-  status, finds the worst-offending pages/components, cross-references recent deploys, and produces
-  a Slack-pasteable investigation summary. Read-only — never modifies anything.
+  Investigate a breaching SLO via Honeycomb. Trigger on "/slo-investigate", "what's causing the
+  X SLO breach", "investigate the CLS breach", "why is the latency SLO red". Read-only.
 allowed-tools:
   - mcp__claude_ai_Honeycomb__get_workspace_context
   - mcp__claude_ai_Honeycomb__get_slos
@@ -87,7 +85,12 @@ If a thread exists, link to it in the output rather than duplicating.
 
 ### 7. Cross-reference recent deploys
 
-Run: `git -C ~/Work/Carwow/quotes_site log --oneline --since="<window> ago" --no-merges`
+Fetch first — a stale local clone silently shows no recent deploys and makes the investigation look clean when it isn't:
+
+```
+git -C ~/Work/Carwow/quotes_site fetch origin
+git -C ~/Work/Carwow/quotes_site log origin/master --oneline --since="<window> ago" --no-merges
+```
 
 Flag any commits that touch code related to the top offenders (e.g. a component name appears in
 the commit message or changed files). Use `git show --stat <hash>` to check changed files for
