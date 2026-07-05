@@ -1,8 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Read(/Users/hmoreira/Work/Carwow/claude-docs/**)",
-      "Read(/Users/hmoreira/.claude/**)",
+      "Read(~/Work/Carwow/claude-docs/**)",
+      "Read(~/.claude/**)",
       "Bash(gh pr view *)",
       "Bash(gh pr list *)",
       "Bash(gh pr diff *)",
