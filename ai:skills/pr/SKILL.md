@@ -11,7 +11,11 @@ Create a well-formed GitHub pull request for the current branch, following Héld
 
 ## Step 1 — Read the branch
 
-Run `git fetch origin master` first — a stale local `origin/master` makes the diff include already-merged commits.
+Two guards first:
+- `git branch --show-current` — if on `master`, stop and ask the user to create a branch first; there's no PR to make from master.
+- `git status --porcelain` — if the working tree is dirty, ask whether to commit those changes first or proceed without them. The PR only includes what's pushed — silently leaving edits behind means the body you validate won't match the diff.
+
+Then run `git fetch origin master` — a stale local `origin/master` makes the diff include already-merged commits.
 
 Then run these in parallel:
 - `git log origin/master...HEAD --oneline` — list commits on this branch
