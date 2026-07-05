@@ -2,9 +2,7 @@
 name: pr
 description: >-
   Create a GitHub pull request for the current branch. Trigger on "/pr",
-  "create a PR", "open a PR", "make a pull request". Reads the diff and
-  commits, picks a template (extended or short), asks for the Kanbanize
-  card ID, drafts the title and body for validation, then runs gh pr create.
+  "create a PR", "open a PR", "make a pull request".
 ---
 
 # PR creator
@@ -13,7 +11,9 @@ Create a well-formed GitHub pull request for the current branch, following Héld
 
 ## Step 1 — Read the branch
 
-Run these in parallel:
+Run `git fetch origin master` first — a stale local `origin/master` makes the diff include already-merged commits.
+
+Then run these in parallel:
 - `git log origin/master...HEAD --oneline` — list commits on this branch
 - `git diff origin/master...HEAD --stat` — get a sense of size and files changed
 
@@ -33,11 +33,15 @@ Wait for their answer before continuing.
 
 ## Step 3 — Get the card ID
 
-Always ask:
+If the **Kanbanize MCP** is connected, try to find the card yourself first: `search_cards` on board "GYC - Optimus" (board 48) using keywords from the branch name and commit subjects. If there's a plausible match, propose it:
+
+> "Looks like this is card <id> — '<card title>'. Right one? (or give me another ID / blank for none)"
+
+If the MCP isn't connected, the search finds nothing convincing, or the user rejects the match, ask:
 
 > "Kanbanize card ID? (leave blank if none)"
 
-If they provide an ID, the card URL is:
+Once you have an ID, the card URL is:
 `https://carwow.kanbanize.com/ctrl_board/48/cards/<id>/details/`
 
 If they leave it blank, omit the card link entirely.
@@ -94,9 +98,14 @@ Iterate on feedback until they approve. Do not run `gh pr create` until they exp
 
 ## Step 6 — Create the PR
 
-Run:
+Push the branch first — `gh pr create` can't prompt for a push target in a non-interactive run:
 ```
-gh pr create --title "<title>" --body "<body>"
+git push -u origin HEAD
+```
+
+Write the body to a temp file (inline `--body` breaks on backticks and quotes), then:
+```
+gh pr create --title "<title>" --body-file <path-to-body-file>
 ```
 
 Return the PR URL.
