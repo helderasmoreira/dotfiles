@@ -15,7 +15,9 @@ allowed-tools:
   - mcp__claude_ai_Honeycomb__list_spans
   - mcp__claude_ai_Honeycomb__get_span_details
   - mcp__claude_ai_Slack__slack_search_public_and_private
-  - Bash
+  - Bash(git log:*)
+  - Bash(git show:*)
+  - Bash(git -C:*)
 disallowed-tools:
   - Edit
   - Write
