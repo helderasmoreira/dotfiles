@@ -34,7 +34,9 @@
       "Read(~/.aws/**)"
     ],
     "ask": [
-      "Read(**/.env*)"
+      "Read(**/.env*)",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)"
     ]
   },
   "model": "claude-fable-5[1m]",
