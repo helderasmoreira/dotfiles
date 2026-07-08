@@ -40,7 +40,8 @@
   "model": "claude-fable-5[1m]",
   "enabledPlugins": {
     "core@carwow-factory": true,
-    "ruby-lsp@claude-plugins-official": true
+    "ruby-lsp@claude-plugins-official": true,
+    "sre@carwow-factory": true
   },
   "extraKnownMarketplaces": {
     "carwow-factory": {
