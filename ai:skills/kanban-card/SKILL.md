@@ -26,6 +26,7 @@ Read what the user gave you. If the intent, the affected users, or the definitio
 
 If the user references — or you can reasonably find — supporting material, pull it in so the brief is grounded rather than vague. Common sources, and how to reach them:
 
+- **Local plan and shaping docs**: `~/Work/Carwow/claude-docs/<project>/` is where plans and scratch docs live (including /architect handoffs). When the card comes from a plan or a prior shaping session, read the doc there first: it's on disk, needs no auth, and is usually the closest source of truth.
 - **Notion** (experiment docs, investigations, decision records), **Honeycomb** (SLOs, error rates, latency, charts) and **Slack** (the thread where the work was discussed or requested — often the best Background context) are commonly available as **MCP connectors**. These are examples, not a fixed list — use whatever relevant connector is actually available in the session (discover what's connected rather than assuming a specific one exists), and reach for it when the user links or names a source. Connectors may need authentication and aren't always reachable (e.g. in headless runs, or for a teammate who hasn't connected that tool) — if a connector fails or isn't connected, just ask the user to paste the relevant content rather than blocking.
 - **Prior PRs and decisions**: prefer `gh` / git history (`gh pr list`, `gh search prs`, `git log --grep`) — it's always available and needs no auth. Fall back to the GitHub connector only if needed.
 
