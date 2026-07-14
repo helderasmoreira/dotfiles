@@ -60,5 +60,6 @@
       }
     }
   },
+  "effortLevel": "xhigh",
   "skipWorkflowUsageWarning": true
 }
