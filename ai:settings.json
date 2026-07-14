@@ -43,13 +43,20 @@
   "enabledPlugins": {
     "core@carwow-factory": true,
     "ruby-lsp@claude-plugins-official": true,
-    "sre@carwow-factory": true
+    "sre@carwow-factory": true,
+    "chrome-devtools-mcp@chrome-devtools-plugins": true
   },
   "extraKnownMarketplaces": {
     "carwow-factory": {
       "source": {
         "source": "git",
         "url": "git@github.com:carwow/factory.git"
+      }
+    },
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
       }
     }
   },
