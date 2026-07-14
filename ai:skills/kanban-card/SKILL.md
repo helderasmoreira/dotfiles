@@ -54,7 +54,7 @@ Fill in the template below. Then re-read it as if you were a teammate seeing it 
 
 ### 7. Create the card (or hand off the text)
 
-Show the drafted card to the user and get their sign-off before creating anything.
+Review the draft with the user **one section at a time** — Background first, then Requirements — rather than presenting the full card at once. Once the sections are signed off, get a final go-ahead before creating anything.
 
 If the **Kanbanize MCP** is connected, offer to create the card directly. On confirmation, call `create_card_batch` with:
 
@@ -84,6 +84,7 @@ Write the card the way the team writes them — collaborative and grounded, not 
 - **Surface open questions honestly** rather than papering over them — a trailing "Any others?", "TBD if…", or an open question is expected, not a failure.
 - **Point at people and channels**: "discuss with Ken", "pair with Darshana", "reach out to #eng-techleads", "/cc Gary". Cards start conversations.
 - **Ground, don't dump.** Prefer links (Notion, Figma, PRs, Honeycomb, Slack) and precise `path/to/file.rb:42` refs over pasted content.
+- **Refer to sibling cards by role, not ID or title** — "the predecessor", "the follow-up", "the sibling". Hyperlink the phrase to the card in the text, and link the cards on the board as well.
 - **British English**, and the team's vocabulary (PLP, derivative, configurator, Deals Service, turbo frame).
 - A **light human touch** is fine in small doses (a "KISS", the odd ⚠️) — but keep it rare.
 
