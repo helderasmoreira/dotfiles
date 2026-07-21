@@ -3,6 +3,11 @@
 Shared preferences live in `~/Work/dotfiles/ai/shared.md`. This file adds
 OpenCode / personal-project rules.
 
+## Git & GitHub
+
+- End commits with `Co-Authored-By: OpenCode (<model>) <noreply@opencode.ai>`,
+  replacing `<model>` with the model you're running as (e.g. kimi-k3).
+
 ## OpenCode config
 
 - Global OpenCode config lives at `~/.config/opencode/opencode.json`.
