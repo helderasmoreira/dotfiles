@@ -1,7 +1,9 @@
 # Personal preferences
 
-Shared preferences live in `~/Work/dotfiles/ai/shared.md`. This file adds
+Shared preferences are imported from `shared.md`; this file adds
 Claude / work-specific rules.
+
+@~/Work/dotfiles/ai/shared.md
 
 ## Git & GitHub
 
