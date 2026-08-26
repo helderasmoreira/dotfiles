@@ -12,6 +12,13 @@
 - When writing or rewriting specs, follow existing repository conventions for
   mocking/stubbing — read a similar existing spec first before writing new
   test code.
+- Request specs prove the HTTP contract and wiring only: status, redirects
+  and URL scheme, headers (cache, robots), auth gates, which sections render
+  for an input, jobs enqueued, stream sources or structured data present or
+  absent. What an input produces (text, titles, meta, links, image URLs,
+  lists) is asserted in presenter/unit specs, not request specs, even at one
+  assertion per section. Accepted gap: "the view reads the presenter key"
+  stays unproven.
 
 ## Verification
 
