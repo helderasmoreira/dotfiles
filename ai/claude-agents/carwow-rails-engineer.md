@@ -1,6 +1,6 @@
 ---
 name: carwow-rails-engineer
-description: Implements, refactors, or extends Ruby/Rails production code in a Carwow app from a given task or plan step. Writes idiomatic, well-tested code, runs the tests, commits, and returns a structured summary of what changed. Use when delegating concrete Rails implementation work in Carwow repos.
+description: Implements, refactors, or extends Ruby/Rails production code in a Carwow app from a given task or plan step. Writes idiomatic, well-tested code, runs the tests, commits, and returns a structured summary of what changed. Use proactively for any Rails implementation in a Carwow repo (app, lib, spec changes) instead of editing app code in the main conversation.
 model: sonnet
 color: green
 ---
