@@ -32,13 +32,13 @@ If the user references — or you can reasonably find — supporting material, p
 
 Don't paste walls of fetched content into the card. Distil it: link to the source in the Background, and pull the specific facts that shape the Requirements.
 
-### 3. Briefly explore the codebase
+### 3. Verify the card's claims in the codebase
 
-If a clear technical change, spend a little time locating the relevant code so the **Requirements** are concrete. Name the real files, models, endpoints, flags, or components involved, and reference code as `path/to/file.rb:42` where it helps the reader jump straight in. Keep it brief — a few searches and reads, not a full audit.
+Explore the code to check what the card asserts, not to harvest detail for it. Confirm the stated root cause, check that anything the card says we can reuse actually exists and is already loaded where the card says, and notice if the work is bigger or trickier than it looked. Flagging that early is exactly what a card is for.
 
-If you discover the work is bigger or trickier than it looked, say so; flagging that early is exactly what a card is for.
+What you learn mostly stays in the conversation. The audience is senior engineers whose job includes finding their way around the codebase, so name a component only when it saves real time, and never controllers, actions, paths, partials or line numbers. Phrase a reuse point as the concrete connection (what this page already loads, what the other page already does with it), not as an abstract pointer. Keep the exploration brief: a few searches and reads, not a full audit.
 
-For **investigation/spike cards**, skip this step almost entirely — name the one relevant file if it's obvious, put source links in Background, and scope the card as "investigate, assess if our team can help, report back, agree next steps" rather than a fix. Don't fuss over exact metric targets or thresholds. Ask before doing heavier code exploration.
+For **investigation/spike cards**, skip this step almost entirely. Put source links in Background and scope the card as "investigate, assess if our team can help, report back, agree next steps" rather than a fix. Don't fuss over exact metric targets or thresholds. Ask before doing heavier code exploration.
 
 ### 4. Decide on scope (split or not)
 
@@ -50,7 +50,7 @@ The title is `[<area>] <title>`, where the area reflects the team's current-quar
 
 ### 6. Draft the card
 
-Fill in the template below. Then re-read it as if you were a teammate seeing it cold: could you start the work without asking the author anything? Tighten until the answer is yes.
+Fill in the template below, shorter than feels natural: Background is a short paragraph or two, Requirements a short list of outcome bullets. The card keeps the intent and the action; the reasoning behind each decision lives in the conversation or the linked doc, even when it was agreed explicitly in chat. Then re-read it as if you were a teammate seeing it cold: could you start the work without asking the author anything? Finally cut every line that teammate would not miss.
 
 ### 7. Create the card (or hand off the text)
 
@@ -78,17 +78,19 @@ Write the card the way the team writes them — collaborative and grounded, not 
 
 - **Use "we".** Frame the work as the team's: "We want to test…", "We went with Option 3", "We need this to be backwards compatible." Avoid "you must" / "the developer should."
 - **Lead product cards with the hypothesis or the why**, ideally as a short blockquote bet ("If we do X, then Y because Z?"). Link the source of truth rather than restating it.
-- **Recommend a default, don't dictate the how.** "My suggestion would be…", "the pragmatic fix is… unless there's a reason to explore…". Leave the implementer room to choose.
+- **Recommend a default, don't dictate the how.** "My suggestion would be…", "the pragmatic fix is… unless there's a reason to explore…". Leave the implementer room to choose. State restrictions as outcomes ("UK-only, admin-only until launch") rather than mechanisms (flags, providers). Where the approach isn't settled, make it a team question in first person: "TBD how much we can reuse? Something to discuss with the team before committing to an approach."
+- **Plain product phrasing.** No em-dash asides, rhetorical flourishes or engineering jargon ("two-tier", "cold path", "stale-while-revalidate"). Say "placeholder" not "skeleton", "acts as the lock" not "doubles as the lock". Do add the consumer-facing consequence when it matters: "This 'base' version is what SEO would also see."
+- **Sub-bullets over long bullets.** One plain declarative bullet per outcome, with the detail nested beneath it. Only genuinely open sub-questions earn a sub-bullet of their own.
 - **Reserve bold for load-bearing constraints and caveats** — the thing that will bite the reader: "**Note that**", "**Must be correct on iOS and Android**", "**Timebox this to 1 day**". Don't bold for decoration.
 - **Fence the scope explicitly.** Say what's out: "X is deliberately out of scope", "hide behind a param for now", "there's no consumer yet."
 - **Surface open questions honestly** rather than papering over them — a trailing "Any others?", "TBD if…", or an open question is expected, not a failure.
 - **Point at people and channels**: "discuss with Ken", "pair with Darshana", "reach out to #eng-techleads", "/cc Gary". Cards start conversations.
-- **Ground, don't dump.** Prefer links (Notion, Figma, PRs, Honeycomb, Slack) and precise `path/to/file.rb:42` refs over pasted content.
+- **Ground, don't dump.** Link the source (Notion, Figma, PR, Honeycomb, Slack) rather than pasting it, and keep links few: the source of truth for a point, not every doc that touched the topic. Point at design sources before people: "covered in the Figma already; if you can't find it, discuss with Rhys".
 - **Refer to sibling cards by role, not ID or title** — "the predecessor", "the follow-up", "the sibling". Hyperlink the phrase to the card in the text, and link the cards on the board as well.
 - **British English**, and the team's vocabulary (PLP, derivative, configurator, Deals Service, turbo frame).
 - A **light human touch** is fine in small doses (a "KISS", the odd ⚠️) — but keep it rare.
 
-For heavier technical cards, a short **Developer notes** subsection under Requirements is idiomatic — offer a concrete approach as a suggestion ("Perhaps we point the turbo frame src at a Research Site endpoint?"), not a mandate.
+For heavier technical cards, a short **Developer notes** subsection under Requirements is idiomatic. It carries the one core mechanism as a suggestion ("Perhaps we point the turbo frame src at a Research Site endpoint?"), not a mandate, and nothing else: no failure-handling parentheticals, no merge recipes, no forward-looking design commentary, and no enumeration of what to reuse when a single comparison ("same interaction as the configurator AI assistant test") already implies it.
 
 ## Card format
 
@@ -102,11 +104,11 @@ Output the title on its own line, then the body in a fenced block so it's a clea
 ```
 ## Background
 
-<Why this work matters, in plain language. The problem or opportunity, who it affects, and the business/user context. Avoid referencing code here — a non-engineer should be able to follow it. Link out to the source of truth instead of embedding detail: a Notion doc, a Honeycomb SLO, a dashboard, a Slack thread where it was discussed, or a prior decision.>
+<Why this work matters, in plain language. The problem or opportunity, who it affects, and the business/user context. Avoid referencing code here — a non-engineer should be able to follow it. Link out to the source of truth instead of embedding detail (a Notion doc, a Honeycomb SLO, a dashboard, the Slack thread, a prior decision), and keep it tight: the link that is the source of truth, not every doc that touched the topic.>
 
 ## Requirements
 
-<This is where the depth goes. A concrete, checkable list of what has to be true for this to be considered done. Be pragmatic but not prescriptive: describe the outcome and the real constraints, name the actual files / endpoints / flags / components involved, and cite prior PRs or decisions when they explain the shape of the work — but leave the implementer room to choose the approach. Call out edge cases, multi-country implications, and open questions. The audience is senior engineers: state *what* we want, *where* it's used, and *where* prior art lives — when a linked PoC or plan doc already covers the detail, link out rather than enumerating prescriptive bullets.>
+<A short list of plain declarative bullets stating what has to be true for this to be done, with sub-bullets for detail. Each bullet is an outcome and its real constraints, not a mechanism: "UK-only, admin-only until launch", not a flag design. Fence what is out of scope. Don't restate in words what Background or a linked design/doc already shows: "apply the designs to the current page; review the Figma carefully and call out any inconsistencies for review with Rhys" is the whole requirement. No suggested class names, field enumerations, testing instructions, or controller/path/partial references; the audience is senior engineers who will find their way around. Multi-country implications and genuinely open questions earn a bullet; settled reasoning does not.>
 
 - ...
 - ...
