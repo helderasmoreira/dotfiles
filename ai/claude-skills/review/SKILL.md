@@ -1,7 +1,7 @@
 ---
 name: review
 description: >-
-  Review a PR, a branch, or the working tree with parallel carwow-code-reviewer agents (the full review, a claims audit of the description against the diff, and the same review on a second model), then return one ranked list. Trigger on "/review", "review this PR", "review #40155", "review my branch before I push". Read-only: never edits, commits, pushes, or posts to GitHub.
+  Review a PR, a branch, or the working tree with parallel carwow-code-reviewer agents (the full review and a claims audit of the description against the diff), then return one ranked list. Trigger on "/review", "review this PR", "review #40155", "review my branch before I push". Read-only: never edits, commits, pushes, or posts to GitHub.
 allowed-tools:
   - Agent
   - Bash(git fetch:*)
@@ -19,7 +19,7 @@ disallowed-tools:
 
 # Parallel review
 
-Orchestrate the `carwow-code-reviewer` agent instead of reviewing in this conversation. The agent holds the mandate, the Carwow checklist and the report shape. This skill resolves the target, runs the agent several times at once with different focuses, and merges what comes back into one list the user can act on.
+Orchestrate the `carwow-code-reviewer` agent instead of reviewing in this conversation. The agent holds the mandate, the Carwow checklist and the report shape. This skill resolves the target, runs the agent twice at once with different focuses, and merges what comes back into one list the user can act on.
 
 **Read-only.** Never edit files, commit, push, or post anything to GitHub. Findings go to the user in chat; they decide what to do with them.
 
@@ -35,7 +35,7 @@ Write down the exact commands the agents should run so every one of them looks a
 
 ## Step 2: Launch the reviewers in parallel
 
-One message, all Agent calls together, each with `subagent_type: carwow-code-reviewer`. Wait for all of them. Do not start a review of your own in the meantime.
+One message, both Agent calls together, each with `subagent_type: carwow-code-reviewer` and no model override. Wait for both. Do not start a review of your own in the meantime.
 
 **Reviewer A: full review.** The agent's own mandate, unchanged. The prompt gives the target (the commands to run, and for a PR the number so it can read the description and comments) and says "Review as your definition describes."
 
@@ -45,25 +45,20 @@ One message, all Agent calls together, each with `subagent_type: carwow-code-rev
 
 Skip Reviewer B when there is no description and no commit message to audit, and say so in the output.
 
-**Reviewer C: second model.** The same prompt as A, word for word, with the Agent tool's `model` override set to a model this session is not running on: `opus` by default, `fable` if the session is already on Opus. The prompt must be identical so a disagreement comes from the model, not the wording.
-
 ## Step 3: Merge
 
-Read B first. Its VERIFIED evidence settles questions A and C could only ask, and corrects facts they got wrong; when it does, say so and cite the evidence rather than listing the question as open. Then build one list from A and C, deduplicated by file and issue, ranked as:
+Read B first. Its VERIFIED evidence settles questions A could only ask, and corrects facts A got wrong; when it does, say so under the relevant item and cite the evidence rather than listing the question as open. Then rank A's findings as:
 
 - **Blocking**: would break production, leak data, or drop behaviour the change was not meant to drop.
 - **Should fix**: real, not blocking.
 - **Ignore**: raised but not worth acting on, with a one-line reason each.
 
-Then two short sections:
-
-- **Disagreements**: findings only one of A and C raised, and severities they disagree on. Name which reviewer raised what. Do not pick a side silently; if you checked one side yourself, say how.
-- **Claims**, from B: FALSE first with the proposed wording, then UNVERIFIABLE, then OMISSIONS. Leave VERIFIED out unless the user asks for it.
+Then one short section, **Claims**, from B: FALSE first with the proposed wording, then UNVERIFIABLE, then OMISSIONS. Leave VERIFIED out unless the user asks for it. Where A and B contradict each other and B's evidence does not settle it, say so and, if you checked yourself, say how.
 
 Each item is one or two lines with a `file:line`. A clean PR gets a short output that says so. End with one line: would you block merge, and on what.
 
 ## What not to do
 
-- Do not re-run a reviewer because you dislike its answer. Report it under Disagreements.
+- Do not re-run a reviewer because you dislike its answer. Report the answer as given.
 - Do not fix anything, even a one-liner. The user asks for fixes separately.
 - Do not post to GitHub. The user pastes what they want to keep.
