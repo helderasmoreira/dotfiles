@@ -15,7 +15,7 @@ $ARGUMENTS is a Kanbanize card id or URL on board 48. Read the card through the 
 
 ## 2. Build
 
-Create the branch named in the plan from an up-to-date master. Dispatch carwow-rails-engineer once per subtask, in plan order, with the handoff doc path and the subtask number. If the engineer returns questions, put them to the user and stop.
+Before cutting the branch: the tree must be clean and on master, level with origin/master. Otherwise stop and say what is in the way. Then create the branch named in the plan from master. Dispatch carwow-rails-engineer once per subtask, in plan order, with the handoff doc path and the subtask number. If the engineer returns questions, put them to the user and stop.
 
 ## 3. Critique
 
