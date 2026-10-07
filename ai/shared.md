@@ -28,17 +28,17 @@
 
 ## Writing & voice
 
-Applies to anything drafted for me: cards, briefs, PR descriptions, docs,
-messages, review copy.
+Applies to chat replies and anything drafted for me: cards, briefs, PR
+descriptions, docs, messages, review copy.
 
+- Full sentences, one idea each, active voice. One term per concept, the
+  code's name where it has one.
+- No AI-speak: contrast-negation ("X was never the problem. Y was."),
+  rhetorical questions, slogan headlines, double negatives, filler openers,
+  many small sections. Say the thing directly.
 - No em dashes. Use colons, commas, parentheses, or split sentences.
-- Write "AB test", never "A/B" or "A-B".
-- Start leaner than feels natural: state the outcome, the real constraints,
-  and precise code/doc references. Cut benefit/justification prose, restated
-  decisions, and anything derivable from a linked doc or the code.
-- Leave room for the implementer: no suggested class names, field
-  enumerations, or testing instructions in cards and briefs.
-- Express preferences qualitatively; don't invent numeric thresholds
-  (e.g. "~70 lines") unless I supplied the number.
-- For long drafts, offer one section at a time for review rather than the
-  full text at once.
+- "AB test", never "A/B" or "A-B".
+- Lean: outcome, real constraints, precise references. Cut justification,
+  restated decisions, anything derivable from the code or a linked doc, and
+  numbers I didn't supply.
+- Long drafts: one section at a time for review.
