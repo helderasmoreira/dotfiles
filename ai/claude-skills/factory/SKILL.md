@@ -23,8 +23,8 @@ After every engineer dispatch, here and in the critique's fix pass, run `~/.clau
 
 Run /review on the branch and give both reviewers the handoff doc path as the stated intent, so the second reviewer checks the branch against the plan instead of a PR description.
 
-Then loop. For each Blocking and Should fix finding, dispatch one carwow-rails-engineer, one after another, told to fix it or say why not. When the last returns, run /review again: Reviewer A blind, full diff, no previous report; Reviewer B with the previous findings and the engineers' replies, to say which were resolved, which were not, and which were declined. Stop when a round leaves no Blocking or Should fix, when a declined finding is re-raised, or after three rounds. Report what is left and stop: the user reviews the code and says whether to ship.
+Then loop. For each Blocking and Should fix finding, dispatch one carwow-rails-engineer, one after another, told to fix it or say why not. When the last returns, run /review again: Reviewer A blind, full diff, no previous report; Reviewer B with the previous findings and the engineers' replies, to say which were resolved, which were not, and which were declined. Stop when a round leaves no Blocking or Should fix, when a declined finding is re-raised, or after three rounds. Report what is left and stop: the user reviews the code and says whether to push.
 
-## 4. Ship
+## 4. Push
 
 Run /pr with the card id and the handoff doc path as a source for the body, so it does not search the board or ask what the change was for. /pr drafts the title and body and waits for the user's approval; that is its own stop. On approval it pushes and opens the PR.
