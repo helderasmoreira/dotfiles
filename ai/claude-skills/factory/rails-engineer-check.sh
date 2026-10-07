@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
-# SubagentStop check for carwow-rails-engineer: everything committed, RuboCop clean on the
-# Ruby files the branch touches, and the spec files the branch touches green. Blocks once;
-# the second stop is let through so a stubborn failure ends up in the report, not in a loop.
+# Run by the factory after each carwow-rails-engineer dispatch, from the repo root:
+# everything committed, RuboCop clean on the Ruby files the branch touches, and the spec
+# files the branch touches green. Exits 2 with the problems on stderr. Also accepts hook
+# JSON on stdin (cwd, agent_type) so it can be wired to a hook again if that ever works.
 set -o pipefail
 
-input=$(cat)
+input=$(cat 2>/dev/null)
+[[ -z "$input" ]] && input='{}'
 agent_type=$(jq -r '.agent_type // ""' <<<"$input")
-[[ "$agent_type" == *carwow-rails-engineer* ]] || exit 0
-[[ "$(jq -r '.stop_hook_active // false' <<<"$input")" == "true" ]] && exit 0
+branch=""
+trap 'rc=$?; echo "$(date +%FT%T) agent=${agent_type:-cli} branch=$branch exit=$rc" >> "$HOME/.claude/rails-engineer-check.log"' EXIT
+[[ -z "$agent_type" || "$agent_type" == *carwow-rails-engineer* ]] || exit 0
 
 cd "$(jq -r '.cwd // "."' <<<"$input")" || exit 0
 [[ -f Gemfile ]] || exit 0

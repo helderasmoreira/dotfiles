@@ -17,6 +17,8 @@ $ARGUMENTS is a Kanbanize card id or URL on board 48. Read the card through the 
 
 Before cutting the branch: the tree must be clean and on master, level with origin/master. Otherwise stop and say what is in the way. Then create the branch named in the plan from master. Dispatch carwow-rails-engineer once per subtask, in plan order, with the handoff doc path and the subtask number. If the engineer returns questions, put them to the user and stop.
 
+After every engineer dispatch, here and in the critique's fix pass, run `~/.claude/skills/factory/rails-engineer-check.sh` from the repo root. It re-runs RuboCop on the Ruby files the branch touches, runs the spec files it touches, and requires a clean tree. If it fails, dispatch the engineer once more with its output; if it fails again, report that and stop.
+
 ## 3. Critique
 
 Run /review on the branch and give both reviewers the handoff doc path as the stated intent, so the second reviewer checks the branch against the plan instead of a PR description.
