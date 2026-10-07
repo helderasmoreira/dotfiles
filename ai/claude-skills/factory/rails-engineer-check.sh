@@ -40,7 +40,7 @@ if (( ${#ruby[@]} )); then
     problems+="RuboCop is not clean on the files this branch touches:"$'\n'"$(tail -40 <<<"$out")"$'\n'
   fi
 fi
-if (( ${#haml[@]} )); then
+if (( ${#haml[@]} )) && grep -q haml_lint Gemfile.lock; then
   if ! out=$(carwow run bundle exec haml-lint "${haml[@]}" 2>&1); then
     problems+="haml-lint is not clean on the files this branch touches:"$'\n'"$(tail -40 <<<"$out")"$'\n'
   fi
