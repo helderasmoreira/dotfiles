@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SubagentStop gate for carwow-rails-engineer: everything committed, RuboCop clean on the
+# SubagentStop check for carwow-rails-engineer: everything committed, RuboCop clean on the
 # Ruby files the branch touches, and the spec files the branch touches green. Blocks once;
 # the second stop is let through so a stubborn failure ends up in the report, not in a loop.
 set -o pipefail

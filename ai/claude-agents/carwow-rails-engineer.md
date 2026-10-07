@@ -7,7 +7,7 @@ hooks:
   SubagentStop:
     - hooks:
         - type: command
-          command: ~/.claude/agents/hooks/rails-engineer-gate.sh
+          command: ~/.claude/agents/hooks/rails-engineer-check.sh
           timeout: 900
 ---
 
