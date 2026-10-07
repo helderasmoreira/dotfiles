@@ -13,7 +13,7 @@
   mocking/stubbing — read a similar existing spec first before writing new
   test code.
 - Request specs prove the HTTP contract and wiring only: status, redirects
-  and URL scheme, headers (cache, robots), auth gates, which sections render
+  and URL scheme, headers (cache, robots), auth restrictions, which sections render
   for an input, jobs enqueued, stream sources or structured data present or
   absent. What an input produces (text, titles, meta, links, image URLs,
   lists) is asserted in presenter/unit specs, not request specs, even at one

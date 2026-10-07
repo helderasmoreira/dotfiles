@@ -13,6 +13,13 @@ Claude / work-specific rules.
 - Don't run `gh pr create` unprompted — go through the /pr skill flow or ask
   first.
 
+## Writing
+
+- "Carwow" capitalised in prose; commands and identifiers keep their real
+  casing (`carwow run`).
+- Never "gate" or "gated" (commits, branches, PRs, cards): say restriction,
+  restricted to, admin-only.
+
 ## Claude config
 
 - Personal skills/agents live in my dotfiles: `~/Work/dotfiles/ai/claude-skills/`
