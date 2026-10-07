@@ -33,4 +33,4 @@ Claude / work-specific rules.
   landmine the code can't show, or a rubocop directive. Motivation belongs in
   the PR body or the card, not in the code. Specs get no comments at all.
 
-@RTK.md
+@~/.claude/RTK.md

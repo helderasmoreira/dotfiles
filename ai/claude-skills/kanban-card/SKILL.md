@@ -46,7 +46,7 @@ If the user handed you a plan, a checklist, or several distinct tasks, don't sil
 
 ### 5. The area
 
-The title is `[<area>] <title>`, where the area reflects the team's current-quarter OKRs and changes each quarter, so there's no reliable default — it must come from the user every time (you can suggest a guess, but confirm it). Ask it alongside the step-1 clarifying questions in one round; only ask it here, on its own, if step 1 needed no questions. Keep the title short and outcome-first.
+The title is `[<area>] <title>`, where the area reflects the team's current-quarter OKRs and changes each quarter, so there's no reliable default — it must come from the user every time (you can suggest a guess, but confirm it). For a bug, suggest the area of the surface the fix changes, not the one where the bug was found. Ask it alongside the step-1 clarifying questions in one round; only ask it here, on its own, if step 1 needed no questions. Keep the title short and outcome-first.
 
 ### 6. Draft the card
 
@@ -68,7 +68,11 @@ Use these strings exactly as written (casing matters). They're the confirmed nam
 - `title`: the `[<area>] <title>` line (without the `**Title:**` prefix)
 - `description`: the Background / Requirements / Reviewers body **serialized to HTML**. Draft and preview the card in Markdown (step 6) — that's what renders readably in chat for the user's sign-off — then convert only at this send step, because the Kanbanize description field renders HTML and shows Markdown literally (`##`, `**`, and blank-line paragraph breaks all leak through as raw text). Mechanical conversion, same wording, only the markup changes. Convert **every** Markdown construct to its HTML equivalent (no Markdown may survive), including: `## Heading` → `<h2>Heading</h2>`, paragraphs → `<p>…</p>`, `**bold**` → `<strong>…</strong>`, `` `code` `` → `<code>…</code>`, bullet lists → `<ul><li>…</li></ul>`, `[text](url)` → `<a href="url">text</a>`, `> quote` → `<blockquote>…</blockquote>`.
 
-After it's created, give the user the card URL/ID the tool returns.
+Linking to an archived card makes the whole create fail, so check the linked card's `state` first and, if archived, rely on the hyperlink in the description alone.
+
+After it's created, check the returned `description`: `create_card_batch` sometimes wraps it in an outer `<p>`. If it did, re-save the same HTML with `update_card_details_batch`, which stores it verbatim. Then give the user the card URL/ID the tool returns.
+
+For later edits: a description write replaces the whole field, so fetch the current description right before writing and build on that copy (the user may have edited it in the UI). Attachments go up as inline base64 and can't be deleted via MCP; compare the returned `size` with `wc -c` of the file before saying it's attached.
 
 If the MCP isn't connected (or the call fails), fall back to handing over the copy-pasteable text and tell the user to add the "Needs Research" sticker themselves.
 

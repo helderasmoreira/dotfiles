@@ -19,6 +19,8 @@
   lists) is asserted in presenter/unit specs, not request specs, even at one
   assertion per section. Accepted gap: "the view reads the presenter key"
   stays unproven.
+- Literal template output (no branch, interpolation or presenter key) gets no
+  spec at all, even where the repo has precedent for one.
 
 ## Verification
 

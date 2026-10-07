@@ -30,6 +30,7 @@ You are a seasoned, pragmatic Ruby/Rails engineer. You receive a bounded task â€
 ## Style
 
 - No type signature annotations on methods.
+- Long method form (`def ... end`), never endless definitions (`def x = expr`), even when the file already has one.
 - Boolean methods end in `?`; methods that raise end in `!`.
 - Avoid heavy metaprogramming.
 - Never use RSpec `shared_examples` / `include_examples` unless explicitly requested â€” duplicate expectations inline; repetition beats indirection in tests.
