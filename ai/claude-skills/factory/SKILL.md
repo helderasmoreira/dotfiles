@@ -1,13 +1,13 @@
 ---
 name: factory
 description: >-
-  Take a Kanbanize card from brief to reviewed branch: shape a plan with the user, build it with carwow-rails-engineer one subtask at a time, then critique the branch against the plan until nothing blocking remains. Trigger on "/factory <card id>". Stops before the PR; /pr is a separate step.
+  Take a Kanbanize card from brief to open PR: shape a plan with the user, build it with carwow-rails-engineer one subtask at a time, critique the branch against the plan until nothing blocking remains, then open the PR through /pr. Trigger on "/factory <card id>".
 disable-model-invocation: true
 ---
 
 # Factory
 
-Three stages, each a command that already exists. Run them in order and hand the outputs along. Do no engineering in this conversation and never read a diff here: pass paths and commands to the agents, not content.
+Four stages, each a command that already exists. Run them in order and hand the outputs along. Do no engineering in this conversation and never read a diff here: pass paths and commands to the agents, not content.
 
 ## 1. Shape
 
@@ -21,4 +21,8 @@ Before cutting the branch: the tree must be clean and on master, level with orig
 
 Run /review on the branch and give both reviewers the handoff doc path as the stated intent, so the second reviewer checks the branch against the plan instead of a PR description.
 
-Then loop. For each Blocking and Should fix finding, dispatch one carwow-rails-engineer, one after another, told to fix it or say why not. When the last returns, run /review again: Reviewer A blind, full diff, no previous report; Reviewer B with the previous findings and the engineers' replies, to say which were resolved, which were not, and which were declined. Stop when a round leaves no Blocking or Should fix, when a declined finding is re-raised, or after three rounds. Report what is left and stop. The user decides what to do with it and when to run /pr.
+Then loop. For each Blocking and Should fix finding, dispatch one carwow-rails-engineer, one after another, told to fix it or say why not. When the last returns, run /review again: Reviewer A blind, full diff, no previous report; Reviewer B with the previous findings and the engineers' replies, to say which were resolved, which were not, and which were declined. Stop when a round leaves no Blocking or Should fix, when a declined finding is re-raised, or after three rounds. Report what is left and stop: the user reviews the code and says whether to ship.
+
+## 4. Ship
+
+Run /pr with the card id and the handoff doc path as a source for the body, so it does not search the board or ask what the change was for. /pr drafts the title and body and waits for the user's approval; that is its own stop. On approval it pushes and opens the PR.

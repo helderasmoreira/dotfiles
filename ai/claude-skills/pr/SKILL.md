@@ -28,6 +28,8 @@ Collect every link and reference in the commit messages: PR numbers, Bugsnag err
 
 ## Step 2 — Find the card and its context
 
+When the caller already gives a card id and a handoff doc path (the factory does), skip the search and the card question: read the card and the doc, and go straight to the trigger check below.
+
 If the **Kanbanize MCP** is connected, try to find the card yourself: `search_cards` on board "GYC - Optimus" (board 48) using keywords from the branch name and commit subjects. If the search found a plausible match, read it before asking: `get_card_details_batch` for the description and `get_card_comments_batch` for anything decided along the way. The card is the primary source for why the change exists.
 
 Then ask one question:
@@ -86,7 +88,7 @@ The gem's own retry middleware isn't used because it also re-runs timeouts and c
 - Timeouts are deliberately not retried.
 ```
 
-Sources, in order: the card description and comments, the commit bodies, the links collected in Step 1, and the answer to the trigger question. Then read the diff and check every claim in the body against it. The diff is for accuracy, not for generating content.
+Sources, in order: the card description and comments, the handoff doc when one was given (its Decisions are the Approach list's raw material), the commit bodies, the links collected in Step 1, and the answer to the trigger question. Then read the diff and check every claim in the body against it. The diff is for accuracy, not for generating content.
 
 Then re-read with two cuts. Would this sentence still be true and obvious after reading the diff? Then it narrates the mechanism; the reviewer reads the files anyway, so cut it. Is this the immediate reason for this change, or context about the wider initiative that the card already holds? Then it belongs to the card link; cut it, leaving at most one line of shared context when the PR is one slice of something larger.
 
