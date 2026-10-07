@@ -32,3 +32,5 @@ Claude / work-specific rules.
 - No code comments unless essential to understanding the code: a genuine
   landmine the code can't show, or a rubocop directive. Motivation belongs in
   the PR body or the card, not in the code. Specs get no comments at all.
+
+@RTK.md
