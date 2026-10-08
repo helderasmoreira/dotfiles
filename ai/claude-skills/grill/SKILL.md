@@ -10,7 +10,7 @@ Interview the user relentlessly until you reach a shared understanding. Map the 
 
 Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled: the questions you can ask now without guessing at answers you haven't heard yet. Ask the whole frontier in one round, numbered, each with your recommended answer. Then wait. A question whose answer depends on another question still open in this round belongs to a later round.
 
-Ask in plain chat, not via AskUserQuestion: frontiers are often larger than four questions and answers are often free-form.
+Ask in plain chat, not via AskUserQuestion: frontiers are often larger than four questions and answers are often free-form. Open the first round by stating the reply convention once: the user replies with exceptions only, and any question they don't mention is accepted as recommended.
 
 Round format:
 
