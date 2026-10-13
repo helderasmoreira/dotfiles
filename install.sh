@@ -34,6 +34,7 @@ link git/.gitignore_global ~/.gitignore_global
 link vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 link ai/claude.md ~/.claude/CLAUDE.md
 link ai/claude-settings.json ~/.claude/settings.json
+link ai/rtk.md ~/.claude/RTK.md
 link ai/claude-skills ~/.claude/skills
 link ai/claude-agents ~/.claude/agents
 link ai/opencode.json ~/.config/opencode/opencode.json
