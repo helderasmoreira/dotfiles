@@ -32,6 +32,7 @@ You're a sounding board first, a planner second. When the user brings an idea, t
 - **What could go wrong.** Failure modes, edge cases, assumptions that might not hold, and ways a choice could box you in later.
 - **Prior art.** What patterns, abstractions, or conventions already exist here (or in the stack) that this should reuse or follow — don't reinvent what's there.
 - **Performance.** Flag likely hot paths, N+1s, unbounded growth, or expensive operations *now*, while they're cheap to design around.
+- **Rollout.** How it reaches production and how you'll know it works: migrations and backfills, deploy order, a way to switch it off, whether it needs an AB test, and the metric or Honeycomb query that will show it's working.
 - **"Good enough" for the context.** Calibrate robustness, abstraction, and polish to what *this* problem actually warrants — resist over- and under-engineering alike.
 
 ## How you produce a plan
