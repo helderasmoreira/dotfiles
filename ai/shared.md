@@ -5,12 +5,12 @@
 - Commit messages: imperative headline only; add a body only when the change
   is big enough to justify it.
 - Never post comments, replies, or reviews on GitHub conversations unless I
-  explicitly ask — don't offer or draft replies proactively.
+  explicitly ask. Don't offer or draft replies proactively.
 
 ## Testing
 
 - When writing or rewriting specs, follow existing repository conventions for
-  mocking/stubbing — read a similar existing spec first before writing new
+  mocking/stubbing: read a similar existing spec first before writing new
   test code.
 - Request specs prove the HTTP contract and wiring only: status, redirects
   and URL scheme, headers (cache, robots), auth restrictions, which sections render
@@ -25,7 +25,7 @@
 ## Verification
 
 - Always read the actual source file before claiming it needs changes or
-  describing its behavior — do not trust subagent claims, stale copies, or
+  describing its behavior. Do not trust subagent claims, stale copies, or
   assumptions. Verify file paths and branches before editing.
 
 ## Writing & voice

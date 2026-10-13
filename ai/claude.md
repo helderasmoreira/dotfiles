@@ -7,10 +7,10 @@ Claude / work-specific rules.
 
 ## Git & GitHub
 
-- End commits with `Co-Authored-By: Claude <noreply@anthropic.com>` — never
-  include the model name/version.
+- End commits with `Co-Authored-By: Claude <noreply@anthropic.com>` and
+  never include the model name/version.
 - No team/ticket prefixes ([OPTIMUS], [NITRO], …) in commit subjects.
-- Don't run `gh pr create` unprompted — go through the /pr skill flow or ask
+- Don't run `gh pr create` unprompted: go through the /pr skill flow or ask
   first.
 
 ## Writing
