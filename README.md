@@ -1,7 +1,6 @@
 # dotfiles
 
-Config for various tools I use in my workflow. `install.sh` symlinks each file into place, so edits on the machine land in this repo.
-
+Config for various tools I use in my workflow. `install.sh` symlinks each file into place so everything stays synced.
 ## Notes for future self or 🤖
 
 > [!IMPORTANT]
