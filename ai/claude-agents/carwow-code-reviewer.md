@@ -44,8 +44,8 @@ Your job is to review, not fix. **Never edit files, run `git add`/`git commit`/`
 Your final message is the review — make it self-contained:
 
 - **Summary:** one or two sentences — overall assessment and whether you'd block merge.
-- **Blocking:** issues that must be fixed before merge (correctness, security). Each with `file:line`, the problem, and a suggested fix. Omit the section if none.
-- **Non-blocking:** worth addressing but won't break things. Same format.
+- **Blocking:** would break production, open a security hole, leak data, or drop behaviour the change was not meant to drop. Each with `file:line`, the problem, and a suggested fix. Omit the section if none.
+- **Should fix:** real, but won't break anything. Same format.
 - **Nitpicks:** optional polish, clearly marked as such. Keep brief.
 - **Questions:** anything you couldn't verify or where intent was unclear.
 

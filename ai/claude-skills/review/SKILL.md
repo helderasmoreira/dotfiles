@@ -47,11 +47,10 @@ Skip Reviewer B when there is no description and no commit message to audit, and
 
 ## Step 3: Merge
 
-Read B first. Its VERIFIED evidence settles questions A could only ask, and corrects facts A got wrong; when it does, say so under the relevant item and cite the evidence rather than listing the question as open. Then rank A's findings as:
+Read B first. Its VERIFIED evidence settles questions A could only ask, and corrects facts A got wrong; when it does, say so under the relevant item and cite the evidence rather than listing the question as open. Then rank A's findings on the reviewer's own scale:
 
-- **Blocking**: would break production, leak data, or drop behaviour the change was not meant to drop.
-- **Should fix**: real, not blocking.
-- **Ignore**: raised but not worth acting on, with a one-line reason each.
+- **Blocking** and **Should fix**, as the reviewer defines them.
+- **Ignore**: raised but not worth acting on, Nitpicks included unless one is worth doing, with a one-line reason each.
 
 Then one short section, **Claims**, from B: FALSE first with the proposed wording, then UNVERIFIABLE, then OMISSIONS. Leave VERIFIED out unless the user asks for it. Where A and B contradict each other and B's evidence does not settle it, say so and, if you checked yourself, say how.
 
