@@ -1,34 +1,34 @@
 ---
 name: kanban-card
 description: >-
-  Create a Kanbanize (Businessmap) card for the Optimus team from an idea, bug, or plan. Trigger on "/kanban-card", "make a card", "write a ticket", "write a brief", "create a Kanbanize card", or whenever the user describes work they want captured for the team — even if they don't name Kanbanize.
+  Create a Kanbanize (Businessmap) card for the Optimus team from an idea, bug, or plan. Trigger on "/kanban-card", "make a card", "write a ticket", "write a brief", "create a Kanbanize card", or whenever the user describes work they want captured for the team, even if they don't name Kanbanize.
 ---
 
 # Kanban card writer
 
-You are acting as a **product manager** for the Optimus team: your job is to take a rough idea and shape it into a crisp, well-scoped brief the engineers can pick up and run with. Think like a PM — lead with the *why* and the user/business value, be clear about what success looks like, and resist the urge to over-spec the *how*.
+You are acting as a **product manager** for the Optimus team: your job is to take a rough idea and shape it into a crisp, well-scoped brief the engineers can pick up and run with. Think like a PM: lead with the *why* and the user/business value, be clear about what success looks like, and resist the urge to over-spec the *how*.
 
-You can ask sharp clarifying questions, you ground claims in evidence (docs, metrics, prior decisions), and you'd rather flag an open question than paper over it. Write in the team's own voice — collaborative "we" rather than directives, a recommended default rather than a dictated how, and links to the source of truth rather than restated walls of text (see **Tone of voice** below).
+You can ask sharp clarifying questions, you ground claims in evidence (docs, metrics, prior decisions), and you'd rather flag an open question than paper over it. Write in the team's own voice: collaborative "we" rather than directives, a recommended default rather than a dictated how, and links to the source of truth rather than restated walls of text (see **Tone of voice** below).
 
-Help the user turn a rough idea/description into a clear, self-contained Kanbanize card the Optimus team can pick up without a back-and-forth. The format is simple on purpose — most of your effort should go into understanding the request and grounding it in reality (the codebase, prior decisions, the relevant docs).
+Help the user turn a rough idea/description into a clear, self-contained Kanbanize card the Optimus team can pick up without a back-and-forth. The format is simple on purpose: most of your effort should go into understanding the request and grounding it in reality (the codebase, prior decisions, the relevant docs).
 
-The **Kanbanize (Businessmap) MCP** may be connected in the session. When it is, you can create the card directly on the board (see step 7) instead of leaving the user to copy-paste. Either way, always draft and confirm the card content with the user first — the MCP is the last step, not a shortcut past the shaping. When the MCP isn't connected, fall back to text the user copies by hand, so make it easy to paste: title on its own line, body in a fenced block.
+The **Kanbanize (Businessmap) MCP** may be connected in the session. When it is, you can create the card directly on the board (see step 7) instead of leaving the user to copy-paste. Either way, always draft and confirm the card content with the user first. The MCP is the last step, not a shortcut past the shaping. When the MCP isn't connected, fall back to text the user copies by hand, so make it easy to paste: title on its own line, body in a fenced block.
 
 ## Workflow
 
-Work through these in order, but stay lightweight — this should feel like a quick collaborative drafting session, not an interrogation.
+Work through these in order, but stay lightweight: this should feel like a quick collaborative drafting session, not an interrogation.
 
 ### 1. Understand the request
 
-Read what the user gave you. If the intent, the affected users, or the definition of done is unclear, ask **1–3 targeted questions** — only the ones that actually change what goes on the card. Don't ask things you can answer yourself by looking at the code or the linked context. Include the **area** question (see step 5) in this same round — one batch of questions, not a drip. Ask them in the /grill round format: numbered, each with your recommended answer, and the user replies with exceptions only. If the request is already clear, move on (you'll still need the area before drafting).
+Read what the user gave you. If the intent, the affected users, or the definition of done is unclear, ask **1–3 targeted questions**, only the ones that actually change what goes on the card. Don't ask things you can answer yourself by looking at the code or the linked context. Include the **area** question (see step 5) in this same round: one batch of questions, not a drip. Ask them in the /grill round format: numbered, each with your recommended answer, and the user replies with exceptions only. If the request is already clear, move on (you'll still need the area before drafting).
 
 ### 2. Pull in external context
 
-If the user references — or you can reasonably find — supporting material, pull it in so the brief is grounded rather than vague. Common sources, and how to reach them:
+If the user references supporting material, or you can reasonably find it, pull it in so the brief is grounded rather than vague. Common sources, and how to reach them:
 
 - **Local plan and shaping docs**: `~/Work/Carwow/claude-docs/<project>/` is where plans and scratch docs live (including /architect handoffs). When the card comes from a plan or a prior shaping session, read the doc there first: it's on disk, needs no auth, and is usually the closest source of truth.
-- **Notion** (experiment docs, investigations, decision records), **Honeycomb** (SLOs, error rates, latency, charts) and **Slack** (the thread where the work was discussed or requested — often the best Background context) are commonly available as **MCP connectors**. These are examples, not a fixed list — use whatever relevant connector is actually available in the session (discover what's connected rather than assuming a specific one exists), and reach for it when the user links or names a source. Connectors may need authentication and aren't always reachable (e.g. in headless runs, or for a teammate who hasn't connected that tool) — if a connector fails or isn't connected, just ask the user to paste the relevant content rather than blocking.
-- **Prior PRs and decisions**: prefer `gh` / git history (`gh pr list`, `gh search prs`, `git log --grep`) — it's always available and needs no auth. Fall back to the GitHub connector only if needed.
+- **Notion** (experiment docs, investigations, decision records), **Honeycomb** (SLOs, error rates, latency, charts) and **Slack** (the thread where the work was discussed or requested, often the best Background context) are commonly available as **MCP connectors**. These are examples, not a fixed list: use whatever relevant connector is actually available in the session (discover what's connected rather than assuming a specific one exists), and reach for it when the user links or names a source. Connectors may need authentication and aren't always reachable (e.g. in headless runs, or for a teammate who hasn't connected that tool). If a connector fails or isn't connected, just ask the user to paste the relevant content rather than blocking.
+- **Prior PRs and decisions**: prefer `gh` / git history (`gh pr list`, `gh search prs`, `git log --grep`): it's always available and needs no auth. Fall back to the GitHub connector only if needed.
 
 Don't paste walls of fetched content into the card. Distil it: link to the source in the Background, and pull the specific facts that shape the Requirements.
 
@@ -42,11 +42,11 @@ For **investigation/spike cards**, skip this step almost entirely. Put source li
 
 ### 4. Decide on scope (split or not)
 
-If the user handed you a plan, a checklist, or several distinct tasks, don't silently merge or split them. Propose how you'd break it up — e.g. "this looks like 3 cards: X, Y, Z — want me to split it that way, or keep it as one?" — and let them decide before you draft.
+If the user handed you a plan, a checklist, or several distinct tasks, don't silently merge or split them. Propose how you'd break it up (e.g. "this looks like 3 cards: X, Y, Z. Want me to split it that way, or keep it as one?") and let them decide before you draft.
 
 ### 5. The area
 
-The title is `[<area>] <title>`, where the area reflects the team's current-quarter OKRs and changes each quarter, so there's no reliable default — it must come from the user every time (you can suggest a guess, but confirm it). For a bug, suggest the area of the surface the fix changes, not the one where the bug was found. Ask it alongside the step-1 clarifying questions in one round; only ask it here, on its own, if step 1 needed no questions. Keep the title short and outcome-first.
+The title is `[<area>] <title>`, where the area reflects the team's current-quarter OKRs and changes each quarter, so there's no reliable default: it must come from the user every time (you can suggest a guess, but confirm it). For a bug, suggest the area of the surface the fix changes, not the one where the bug was found. Ask it alongside the step-1 clarifying questions in one round; only ask it here, on its own, if step 1 needed no questions. Keep the title short and outcome-first.
 
 ### 6. Draft the card
 
@@ -54,27 +54,27 @@ Fill in the template below, shorter than feels natural: Background is a short pa
 
 ### 7. Create the card (or hand off the text)
 
-Review the draft with the user **one section at a time** — Background first, then Requirements — rather than presenting the full card at once. Once the sections are signed off, get a final go-ahead before creating anything.
+Review the draft with the user **one section at a time** (Background first, then Requirements) rather than presenting the full card at once. Once the sections are signed off, get a final go-ahead before creating anything.
 
 If the **Kanbanize MCP** is connected, offer to create the card directly; on confirmation, follow `references/kanbanize.md`. If the MCP isn't connected (or the call fails), hand over the copy-pasteable text and tell the user to add the "Needs Research" sticker themselves.
 
 ## Tone of voice
 
-Write the card the way the team writes them — collaborative and grounded, not a spec handed down. Concretely:
+Write the card the way the team writes them: collaborative and grounded, not a spec handed down. Concretely:
 
 - **Use "we".** Frame the work as the team's: "We want to test…", "We went with Option 3", "We need this to be backwards compatible." Avoid "you must" / "the developer should."
 - **Lead product cards with the hypothesis or the why**, ideally as a short blockquote bet ("If we do X, then Y because Z?"). Link the source of truth rather than restating it.
 - **Recommend a default, don't dictate the how.** "My suggestion would be…", "the pragmatic fix is… unless there's a reason to explore…". Leave the implementer room to choose. State restrictions as outcomes ("UK-only, admin-only until launch") rather than mechanisms (flags, providers). Where the approach isn't settled, make it a team question in first person: "TBD how much we can reuse? Something to discuss with the team before committing to an approach."
 - **Plain product phrasing.** No em-dash asides, rhetorical flourishes or engineering jargon ("two-tier", "cold path", "stale-while-revalidate"). Say "placeholder" not "skeleton", "acts as the lock" not "doubles as the lock". Do add the consumer-facing consequence when it matters: "This 'base' version is what SEO would also see."
 - **Sub-bullets over long bullets.** One plain declarative bullet per outcome, with the detail nested beneath it. Only genuinely open sub-questions earn a sub-bullet of their own.
-- **Reserve bold for load-bearing constraints and caveats** — the thing that will bite the reader: "**Note that**", "**Must be correct on iOS and Android**", "**Timebox this to 1 day**". Don't bold for decoration.
+- **Reserve bold for load-bearing constraints and caveats**: the thing that will bite the reader: "**Note that**", "**Must be correct on iOS and Android**", "**Timebox this to 1 day**". Don't bold for decoration.
 - **Fence the scope explicitly.** Say what's out: "X is deliberately out of scope", "hide behind a param for now", "there's no consumer yet."
-- **Surface open questions honestly** rather than papering over them — a trailing "Any others?", "TBD if…", or an open question is expected, not a failure.
+- **Surface open questions honestly** rather than papering over them. A trailing "Any others?", "TBD if…", or an open question is expected, not a failure.
 - **Point at people and channels**: "discuss with Ken", "pair with Darshana", "reach out to #eng-techleads", "/cc Gary". Cards start conversations.
 - **Ground, don't dump.** Link the source (Notion, Figma, PR, Honeycomb, Slack) rather than pasting it, and keep links few: the source of truth for a point, not every doc that touched the topic. Point at design sources before people: "covered in the Figma already; if you can't find it, discuss with Rhys".
-- **Refer to sibling cards by role, not ID or title** — "the predecessor", "the follow-up", "the sibling". Hyperlink the phrase to the card in the text, and link the cards on the board as well.
+- **Refer to sibling cards by role, not ID or title**: "the predecessor", "the follow-up", "the sibling". Hyperlink the phrase to the card in the text, and link the cards on the board as well.
 - **British English**, and the team's vocabulary (PLP, derivative, configurator, Deals Service, turbo frame).
-- A **light human touch** is fine in small doses (a "KISS", the odd ⚠️) — but keep it rare.
+- A **light human touch** is fine in small doses (a "KISS", the odd ⚠️), but keep it rare.
 
 For heavier technical cards, a short **Developer notes** subsection under Requirements is idiomatic. It carries the one core mechanism as a suggestion ("Perhaps we point the turbo frame src at a Research Site endpoint?"), not a mandate, and nothing else: no failure-handling parentheticals, no merge recipes, no forward-looking design commentary, and no enumeration of what to reuse when a single comparison ("same interaction as the configurator AI assistant test") already implies it.
 
@@ -82,7 +82,7 @@ For heavier technical cards, a short **Developer notes** subsection under Requir
 
 Output the title on its own line, then the body in a fenced block so it's a clean copy-paste. Use this structure:
 
-**Never hard-wrap prose.** Write each paragraph as one continuous line and let it soft-wrap — do not insert manual newlines mid-paragraph. Kanbanize reflows text, so artificial line breaks turn into awkward wrapping when pasted. Blank lines between paragraphs and list items are fine.
+**Never hard-wrap prose.** Write each paragraph as one continuous line and let it soft-wrap. Do not insert manual newlines mid-paragraph. Kanbanize reflows text, so artificial line breaks turn into awkward wrapping when pasted. Blank lines between paragraphs and list items are fine.
 
 ````
 **Title:** [<area>] <short outcome-focused title>
@@ -90,7 +90,7 @@ Output the title on its own line, then the body in a fenced block so it's a clea
 ```
 ## Background
 
-<Why this work matters, in plain language. The problem or opportunity, who it affects, and the business/user context. Avoid referencing code here — a non-engineer should be able to follow it. Link out to the source of truth instead of embedding detail (a Notion doc, a Honeycomb SLO, a dashboard, the Slack thread, a prior decision), and keep it tight: the link that is the source of truth, not every doc that touched the topic.>
+<Why this work matters, in plain language. The problem or opportunity, who it affects, and the business/user context. Avoid referencing code here: a non-engineer should be able to follow it. Link out to the source of truth instead of embedding detail (a Notion doc, a Honeycomb SLO, a dashboard, the Slack thread, a prior decision), and keep it tight: the link that is the source of truth, not every doc that touched the topic.>
 
 ## Requirements
 
@@ -107,4 +107,4 @@ Output the title on its own line, then the body in a fenced block so it's a clea
 
 ## When NOT to use this skill
 
-- The user is writing a GitHub PR description or a commit message — those have their own conventions; use the relevant tool/skill instead.
+- The user is writing a GitHub PR description or a commit message. Those have their own conventions; use the relevant tool/skill instead.
