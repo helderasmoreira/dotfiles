@@ -50,7 +50,7 @@ The title is `[<area>] <title>`, where the area reflects the team's current-quar
 
 ### 6. Draft the card
 
-Keep it short: Background is at most three sentences plus links; Requirements at most five top-level bullets of one sentence each, nested one level at most; Developer notes one or two sentences. If it doesn't fit, it's two cards, or the detail belongs in a linked doc.
+Keep it short: Background is at most three sentences plus links; Requirements at most five top-level bullets of one sentence each, nested one level at most; Developer notes a short paragraph, with the reason when it isn't obvious. If it doesn't fit, it's two cards, or the detail belongs in a linked doc.
 
 Spend the words on what the team needs to start:
 
@@ -81,19 +81,17 @@ Write the card the way the team writes them: collaborative and grounded, not a s
 
 - **Use "we".** Frame the work as the team's: "We want to test…", "We went with Option 3", "We need this to be backwards compatible." Avoid "you must" / "the developer should."
 - **Lead product cards with the hypothesis or the why**, ideally as a short blockquote bet ("If we do X, then Y because Z?"). Link the source of truth rather than restating it.
-- **Recommend a default, don't dictate the how.** "My suggestion would be…", "the pragmatic fix is… unless there's a reason to explore…". Leave the implementer room to choose. State restrictions as outcomes ("UK-only, admin-only until launch") rather than mechanisms (flags, providers). Where the approach isn't settled, make it a team question in first person: "TBD how much we can reuse? Something to discuss with the team before committing to an approach."
+- **Outcomes, not mechanisms.** State restrictions as outcomes ("UK-only, admin-only until launch"), not as flags or providers.
 - **Plain product phrasing.** No em-dash asides, rhetorical flourishes or engineering jargon ("two-tier", "cold path", "stale-while-revalidate"). Say "placeholder" not "skeleton", "acts as the lock" not "doubles as the lock". Do add the consumer-facing consequence when it matters: "This 'base' version is what SEO would also see."
 - **Sub-bullets over long bullets.** One plain declarative bullet per outcome, with the detail nested beneath it. Only genuinely open sub-questions earn a sub-bullet of their own.
 - **Reserve bold for load-bearing constraints and caveats**: the thing that will bite the reader: "**Note that**", "**Must be correct on iOS and Android**", "**Timebox this to 1 day**". Don't bold for decoration.
-- **Fence the scope explicitly.** Say what's out: "X is deliberately out of scope", "hide behind a param for now", "there's no consumer yet."
-- **Surface open questions honestly** rather than papering over them. A trailing "Any others?", "TBD if…", or an open question is expected, not a failure.
-- **Point at people and channels**: "discuss with Ken", "pair with Darshana", "reach out to #eng-techleads", "/cc Gary". Cards start conversations.
-- **Ground, don't dump.** Link the source (Notion, Figma, PR, Honeycomb, Slack) rather than pasting it, and keep links few: the source of truth for a point, not every doc that touched the topic. Point at design sources before people: "covered in the Figma already; if you can't find it, discuss with Rhys".
+- **Fence scope only where a teammate would otherwise assume it's in**: "X is deliberately out of scope".
+- **Keep links few**: the source of truth for a point, not every doc that touched the topic. Point at design sources before people: "covered in the Figma already; if you can't find it, discuss with Rhys".
 - **Refer to sibling cards by role, not ID or title**: "the predecessor", "the follow-up", "the sibling". Hyperlink the phrase to the card in the text, and link the cards on the board as well.
-- **British English**, and the team's vocabulary (PLP, derivative, configurator, Deals Service, turbo frame).
+- **British English**, and the team's vocabulary (PLP, derivative, configurator, Deals Service, turbo frame): "derivative", never "version".
 - A **light human touch** is fine in small doses (a "KISS", the odd ⚠️), but keep it rare.
 
-For heavier technical cards, a short **Developer notes** subsection under Requirements is idiomatic. It carries the one core mechanism as a suggestion ("Perhaps we point the turbo frame src at a Research Site endpoint?"), not a mandate, and nothing else: no failure-handling parentheticals, no merge recipes, no forward-looking design commentary, and no enumeration of what to reuse when a single comparison ("same interaction as the configurator AI assistant test") already implies it.
+For heavier technical cards, a short **Developer notes** subsection under Requirements is idiomatic. It carries the one core mechanism as a suggestion ("Perhaps we point the turbo frame src at a Research Site endpoint?"), not a mandate, with the reason when it isn't obvious, and nothing else: no failure-handling parentheticals, no merge recipes, no forward-looking design commentary, and no enumeration of what to reuse when a single comparison ("same interaction as the configurator AI assistant test") already implies it.
 
 ## Card format
 
