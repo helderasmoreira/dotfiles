@@ -3,19 +3,13 @@
 	email = heldersantos.moreira@gmail.com
 
 [core]
-	pager = less -R
-        excludesfile = ~/.gitignore_global
-
-[alias]
-	st = status
-	ci = commit -v
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
-	staged = diff --cached
-	aa = add -A -v
+	excludesfile = ~/.gitignore_global
 
 [push]
-	default = simple
+	autoSetupRemote = true
+
+[pull]
+	ff = only
 
 [color "branch"]
 	current = yellow reverse
@@ -26,12 +20,3 @@
 	added = yellow
 	changed = red
 	untracked = cyan
-
-[branch]
-	autosetupmerge = true
-
-[commit]
-	gpgsign = false
-
-[pull]
-	ff = only
