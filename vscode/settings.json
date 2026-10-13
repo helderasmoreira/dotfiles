@@ -2,7 +2,7 @@
     "workbench.iconTheme": "vscode-great-icons",
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "terminal.external.osxExec": "iTerm2.app",
+    "terminal.external.osxExec": "cmux.app",
     "editor.rulers": [
         120
     ],
