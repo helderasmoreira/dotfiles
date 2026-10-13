@@ -50,7 +50,7 @@ The title is `[<area>] <title>`, where the area reflects the team's current-quar
 
 ### 6. Draft the card
 
-Keep it short: Background is at most three sentences plus links; Requirements at most five top-level bullets of one sentence each, nested one level at most; Developer notes a short paragraph, with the reason when it isn't obvious. If it doesn't fit, it's two cards, or the detail belongs in a linked doc.
+Keep it short: Background is at most three sentences plus links; Requirements at most five top-level bullets of a sentence or two each, nested one level at most; Developer notes a short paragraph, with the reason when it isn't obvious. If it doesn't fit, it's two cards, or the detail belongs in a linked doc.
 
 Spend the words on what the team needs to start:
 
@@ -117,6 +117,37 @@ Output the title on its own line, then the body in a fenced block so it's a clea
 ## Reviewers
 
 <Who should be informed when this is done. Default to "Optimus" (the team). Add specific people only if the user named them.>
+```
+````
+
+### Example of the right size
+
+````
+**Title:** [Comparison] Regenerate model-level overviews when a review changes
+
+```
+## Background
+
+A model-level overview is written from the two model reviews and spec ranges, nothing derivative-specific, so it only goes stale when one of those reviews changes. Since the predecessor dropped the weekly timer, nothing refreshes an overview after a review edit.
+
+We want a review edit to mark every comparison of that model stale, and each one to regenerate on its next request.
+
+## Requirements
+
+- Any save of the model's review record counts as a change, including edits to its gallery, specs or colours pages.
+- A stale overview regenerates on its next request. Until then the page shows the current copy, not a placeholder.
+  - Curated pairs regenerate only on the next curated run, then get fact-checked again. **The page never regenerates them on demand.**
+- Spec ranges come from live deals data and can drift without any review edit. For now we accept this.
+  - TBD if we want something to handle it too.
+
+### Developer notes
+
+We agreed on pull: the predecessor stores the two review records' last-updated times on the row, and the page compares them with the current ones at lookup. No callback on the review record to make things easier.
+
+## Reviewers
+
+- Optimus
+- Hélder
 ```
 ````
 
