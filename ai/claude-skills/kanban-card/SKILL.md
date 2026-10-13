@@ -20,7 +20,7 @@ Work through these in order, but stay lightweight — this should feel like a qu
 
 ### 1. Understand the request
 
-Read what the user gave you. If the intent, the affected users, or the definition of done is unclear, ask **1–3 targeted questions** — only the ones that actually change what goes on the card. Don't ask things you can answer yourself by looking at the code or the linked context. Include the **area** question (see step 5) in this same round — one batch of questions, not a drip. If the request is already clear, move on (you'll still need the area before drafting).
+Read what the user gave you. If the intent, the affected users, or the definition of done is unclear, ask **1–3 targeted questions** — only the ones that actually change what goes on the card. Don't ask things you can answer yourself by looking at the code or the linked context. Include the **area** question (see step 5) in this same round — one batch of questions, not a drip. Ask them in the /grill round format: numbered, each with your recommended answer, and the user replies with exceptions only. If the request is already clear, move on (you'll still need the area before drafting).
 
 ### 2. Pull in external context
 
