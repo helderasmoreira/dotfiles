@@ -5,3 +5,5 @@
 .vscode
 log/
 tmp
+CLAUDE.md
+**/.claude/settings.local.json
