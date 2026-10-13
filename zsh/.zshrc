@@ -18,9 +18,9 @@ export PATH="$HOME/.local/bin:$PATH"
 
 ### BEGIN carwow dev
 
-PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
-PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
-PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
 
 # Note the folder structure here and adjust accordingly!
 PATH=$PATH:$HOME/Work/Carwow/dev-environment/bin
