@@ -11,13 +11,13 @@ Create a GitHub pull request for the current branch, following Hélder's convent
 
 The body tells the reviewer what the diff cannot: why the change exists, what was decided, and where it stops. Its length tracks how much of that there is, not how big the diff is. A one-line change with a real story gets two paragraphs; a 300-line content swap gets one sentence and a link.
 
-## Step 1 — Read the branch
+## Step 1: Read the branch
 
 Two guards first:
-- `git branch --show-current` — if on `master`, stop and ask the user to create a branch first; there's no PR to make from master.
-- `git status --porcelain` — if the working tree is dirty, ask whether to commit those changes first or proceed without them. The PR only includes what's pushed — silently leaving edits behind means the body you validate won't match the diff.
+- `git branch --show-current`: if on `master`, stop and ask the user to create a branch first; there's no PR to make from master.
+- `git status --porcelain`: if the working tree is dirty, ask whether to commit those changes first or proceed without them. The PR only includes what's pushed. Silently leaving edits behind means the body you validate won't match the diff.
 
-Then run `git fetch origin master` — a stale local `origin/master` makes the diff include already-merged commits.
+Then run `git fetch origin master`: a stale local `origin/master` makes the diff include already-merged commits.
 
 Then run these in parallel:
 - `git log origin/master...HEAD` with full messages, not `--oneline`: commit bodies often carry the rationale
@@ -26,7 +26,7 @@ Then run these in parallel:
 
 Collect every link and reference in the commit messages: PR numbers, Bugsnag errors, Honeycomb queries, Notion docs, Slack threads, spreadsheets. They belong in the body as evidence.
 
-## Step 2 — Find the card and its context
+## Step 2: Find the card and its context
 
 When the caller already gives a card id and a handoff doc path (the factory does), skip the search and the card question: read the card and the doc, and go straight to the trigger check below.
 
@@ -35,7 +35,7 @@ If the **Kanbanize MCP** is connected, try to find the card yourself: `search_ca
 Then ask one question:
 
 - If the search found a match, name the card and state the trigger as you understood it in one sentence:
-  > "Looks like this is card <id> — '<card title>': <one-sentence trigger>. Right card and right reading? (or give me another ID / blank for none)"
+  > "Looks like this is card <id>, '<card title>': <one-sentence trigger>. Right card and right reading? (or give me another ID / blank for none)"
 - If the MCP isn't connected or the search found nothing convincing:
   > "Kanbanize card ID? (leave blank if none)"
 
@@ -46,7 +46,7 @@ If they leave it blank, omit the card link entirely.
 
 If, after the card and the commits, you still cannot say what was wrong or missing before this change, ask one more question about that. Do not guess the why; the diff does not contain it.
 
-## Step 3 — Draft title and body
+## Step 3: Draft title and body
 
 **Title:**
 - If a card ID was given: `[OPTIMUS-<id>] <short imperative description>`
@@ -98,7 +98,7 @@ Keep the tone natural and direct, not bureaucratic. State what was wrong, what w
 
 UI changes get screenshots after the prose under a `## Before / after` or `## Screenshots` heading, desktop and mobile where the layout differs. Capture them into `tmp/pr_screenshots/` (gitignored); Step 5 attaches them.
 
-## Step 4 — Validate
+## Step 4: Validate
 
 Show the full proposed title and body to the user. Ask:
 
@@ -106,9 +106,9 @@ Show the full proposed title and body to the user. Ask:
 
 Iterate on feedback until they approve. Do not run `gh pr create` until they explicitly say yes.
 
-## Step 5 — Create the PR
+## Step 5: Create the PR
 
-Push the branch first — `gh pr create` can't prompt for a push target in a non-interactive run:
+Push the branch first (`gh pr create` can't prompt for a push target in a non-interactive run):
 ```
 git push -u origin HEAD
 ```
