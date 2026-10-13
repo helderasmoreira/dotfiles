@@ -20,6 +20,7 @@ brew "watchman"
 brew "yarn"
 brew "anomalyco/tap/opencode", trusted: true
 cask "bitwarden"
+cask "cmux"
 cask "docker-desktop"
 cask "iterm2"
 cask "kap"
