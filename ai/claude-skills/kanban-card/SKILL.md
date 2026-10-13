@@ -50,7 +50,24 @@ The title is `[<area>] <title>`, where the area reflects the team's current-quar
 
 ### 6. Draft the card
 
-Fill in the template below, shorter than feels natural: Background is a short paragraph or two, Requirements a short list of outcome bullets. The card keeps the intent and the action; the reasoning behind each decision lives in the conversation or the linked doc, even when it was agreed explicitly in chat. Then re-read it as if you were a teammate seeing it cold: could you start the work without asking the author anything? Finally cut every line that teammate would not miss.
+Keep it short: Background is at most three sentences plus links; Requirements at most five top-level bullets of one sentence each, nested one level at most; Developer notes one or two sentences. If it doesn't fit, it's two cards, or the detail belongs in a linked doc.
+
+Spend the words on what the team needs to start:
+
+- **Decisions already agreed**, stated as agreed: "We agreed on pull: …". Only a real suggestion is phrased as one: "I'd suggest…, open to challenge".
+- **Open questions**, each with who to ask: "TBD which AB test Fran means; worth checking with her."
+- **What makes it hard**, in one line, when something does: "The challenge of this card: …".
+- **Where to look**: the write-up, plan or PR that already covers it, and how prescriptive it is: "treat the plan as inspiration; the PRs supersede it."
+
+Before showing a draft, cut:
+
+- Justification beyond the one sentence of why.
+- Code locations: files, classes, paths, line numbers.
+- Edge cases and scope fences nobody raised.
+- Anything a linked card already covers.
+- Housekeeping: which cards to close, what's linked.
+
+Then re-read it as a teammate seeing it cold: could you start without asking the author anything? Cut every line they wouldn't miss.
 
 ### 7. Create the card (or hand off the text)
 
