@@ -31,7 +31,6 @@ link zsh/.zprofile ~/.zprofile
 link ssh/config ~/.ssh/config
 link git/.gitconfig ~/.gitconfig
 link git/.gitignore_global ~/.gitignore_global
-link vim/.vimrc ~/.vimrc
 link vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 link ai/claude.md ~/.claude/CLAUDE.md
 link ai/claude-skills ~/.claude/skills
