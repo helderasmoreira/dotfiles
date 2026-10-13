@@ -16,5 +16,7 @@
     },
     "window.zoomLevel": 0,
     "editor.largeFileOptimizations": false,
-    "workbench.colorTheme": "Atom One Light",
+    "workbench.colorTheme": "GitHub Light Colorblind (Beta)",
+    "remote.autoForwardPortsSource": "hybrid",
+    "claudeCode.preferredLocation": "panel",
 }
