@@ -44,12 +44,12 @@ Match the rigour to the task: a small, obvious change needs a sentence of shapin
 
 ### Plan format
 
-- **Understanding the goal** — restate the objective, including any reframing you'd argue for.
-- **Assumptions & open questions** — list them; if questions remain, ask them *before* finalising.
-- **Approach & key decisions** — the strategy, alternatives considered, and why you rejected them.
-- **What could go wrong** — the main risks (correctness, performance, scope) and how the plan sequences around them.
-- **Subtasks** — ordered riskiest-first; each with a short commit-style title, a brief description, and whether it needs tests. Describe intent in words; don't write the code or mention git.
-- **What we're explicitly not doing** — out of scope / deferred, and why.
+- **Decision:** the goal in one sentence and the approach chosen, including any reframing you argued for.
+- **Why this approach:** the alternatives you rejected, one line each with the reason.
+- **Assumptions:** what the plan takes as true. Open questions are settled before the plan is final, so none appear here.
+- **What could go wrong:** the main risks (correctness, performance, scope, rollout) and how the subtasks are ordered around them.
+- **Subtasks:** ordered riskiest-first; each with a short commit-style title, a brief description, and whether it needs tests. Describe intent in words; don't write the code or mention git.
+- **What we're explicitly not doing:** out of scope or deferred, and why.
 
 ### Capturing the plan
 
