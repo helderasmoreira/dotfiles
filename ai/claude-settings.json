@@ -1,0 +1,102 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(~/Work/Carwow/claude-docs/**)",
+      "Read(~/.claude/**)",
+      "Bash(gh pr view)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr diff)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr checks)",
+      "Bash(gh pr checks *)",
+      "Bash(gh pr status)",
+      "Bash(gh pr status *)",
+      "Bash(bundle show *)",
+      "Bash(git diff)",
+      "Bash(git diff *)",
+      "Bash(git log)",
+      "Bash(git log *)",
+      "Bash(git status)",
+      "Bash(git status *)",
+      "Bash(git show)",
+      "Bash(git show *)",
+      "Bash(git blame *)",
+      "Bash(carwow run bundle exec rspec *)",
+      "Bash(carwow run bundle exec rubocop *)",
+      "WebFetch(domain:rubyllm.com)",
+      "mcp__claude_ai_Slack__slack_search_public_and_private"
+    ],
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)"
+    ],
+    "ask": [
+      "Read(**/.env*)",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "opus",
+  "deniedMcpServers": [
+    {
+      "serverName": "claude.ai incident.io"
+    },
+    {
+      "serverName": "cmux-cua"
+    }
+  ],
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "core@carwow-factory": true,
+    "sre@carwow-factory": true,
+    "chrome-devtools-mcp@chrome-devtools-plugins": true,
+    "ruby-lsp@claude-plugins-official": true,
+    "typesafe@typesafe-ai": false
+  },
+  "extraKnownMarketplaces": {
+    "carwow-factory": {
+      "source": {
+        "source": "git",
+        "url": "git@github.com:carwow/factory.git"
+      }
+    },
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
+      }
+    },
+    "typesafe-ai": {
+      "source": {
+        "source": "github",
+        "repo": "typesafe-ai/skills"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "xhigh"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark"
+}
