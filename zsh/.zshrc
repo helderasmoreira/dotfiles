@@ -23,7 +23,7 @@ PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
 PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
 
 # Note the folder structure here and adjust accordingly!
-PATH=$PATH:$HOME/Work/carwow/dev-environment/bin
+PATH=$PATH:$HOME/Work/Carwow/dev-environment/bin
 
 ### END carwow dev
 
