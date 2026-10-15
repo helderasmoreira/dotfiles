@@ -61,6 +61,10 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "~/Work/dotfiles/ai/claude-statusline.sh"
+  },
   "enabledPlugins": {
     "core@carwow-factory": true,
     "sre@carwow-factory": true,
