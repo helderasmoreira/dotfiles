@@ -36,7 +36,7 @@ if [[ -n "$(git status --porcelain)" ]]; then
   problems+="Uncommitted changes remain. Commit them, or say in your report why they are not committed."$'\n'
 fi
 if (( ${#ruby[@]} )); then
-  if ! out=$(carwow run bundle exec rubocop "${ruby[@]}" 2>&1); then
+  if ! out=$(carwow run bundle exec rubocop --force-exclusion "${ruby[@]}" 2>&1); then
     problems+="RuboCop is not clean on the files this branch touches:"$'\n'"$(tail -40 <<<"$out")"$'\n'
   fi
 fi
