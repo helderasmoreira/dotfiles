@@ -81,14 +81,14 @@ Leave out:
 - How the change was verified or tested.
 - Context the card already holds, and notes to yourself.
 
-Example (#476):
+Example (#8451):
 
 ```
-Inside a worktree, `carwow run` and the bin stubs took the project name from the directory basename, which is the branch. That picked the wrong Ruby, Node and Postgres versions (a quotes_site worktree ran on Node 20) and created `carwow-<branch>-node-modules` and `-tmp` volumes that `worktree remove` never deleted, so every worktree that ran a command left two volumes behind. `worktree list` never showed them either: it filtered leftovers by a prefix no release ever created. `worktree remove --delete-branch` also kept every squash-merged branch, because `git branch -d` refuses them.
+Kanbanize card [here](<url>).
 
-**Notes:**
-- Existing worktrees switch to the shared `carwow-worktree-*` volumes on their next run, so `node_modules` starts empty there.
-- Volumes already leaked under branch names are not removed: `docker volume ls --filter name=carwow-<last branch segment>-` finds them.
+Deals Service sends hyphenated body type slugs, and these two keys have underscores, so we get a missing translation on the compare page ([Bugsnag](<url>), [Slack](<url>)).
+
+The three van keys arrived together with underscores in #6597, and #6863 renamed `electric_vans` for this exact reason while leaving these two behind. They are also the only title-cased entries left in the scope, so the copy is lowercased to match that fix.
 ```
 
 Sources, in order: the card description and comments, the handoff doc when one was given, the commit bodies, the links collected in Step 1, and the answer to the trigger question. A decision from the handoff doc goes in Notes only if it passes the test above. Then read the diff and check every claim in the body against it. The diff is for accuracy, not for generating content.
