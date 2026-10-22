@@ -62,24 +62,23 @@ Kanbanize card [here](<url>).
 <Why: what was wrong or missing, as the user or the team sees it, and the cause, with links to the evidence (Bugsnag error, Honeycomb query, Notion doc, Slack thread).>
 
 **Notes:**
-- <A behaviour decision a reviewer would question before approving, with its reason.>
-- <Something someone must do or will notice after the merge.>
+- <Something the reviewer or a deployer would miss without it; see the list below.>
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 ```
 
 The why is always there: one short paragraph, or two when the cause needs its own. Notes are omitted when nothing qualifies. No markdown headings except the screenshots section at the end. Every paragraph and every bullet is a single line with no manual wrapping: GitHub re-wraps the body at 72 columns when it squashes, and hand-wrapped lines land in `git log` as orphan fragments.
 
-A note is one of two things:
-- A behaviour decision a reviewer would question before approving: retries dropped, a timeout doubled, a field the caller can't set.
+A note is something the reviewer or a deployer would miss without it:
+- A behaviour decision the reviewer would question before approving, with its reason: retries dropped, a timeout doubled, a field the caller can't set.
 - Something someone must do or will notice after the merge: stacked on #<n>, a gem to release, flags to deactivate after deploy, a change other developers will see locally.
+- A clearly different approach the reviewer would expect, and why it wasn't taken.
+- Something the reviewer would expect this PR to do that it doesn't.
+- How to read a big diff: commit by commit, or with `git diff -w` when a dedent hides the real change.
 
 Leave out:
-- What the PR doesn't do, defers or leaves unchanged, unless someone has to act on it.
-- How the change was verified or tested.
-- Alternatives that were rejected.
 - How it works inside: names, keys, queues, which class a method went in. The reviewer reads the diff.
-- Tips for reading the diff or the commits.
+- How the change was verified or tested.
 - Context the card already holds, and notes to yourself.
 
 Example (#476):
