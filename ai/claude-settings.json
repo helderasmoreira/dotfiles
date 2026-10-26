@@ -35,7 +35,9 @@
     "ask": [
       "Read(**/.env*)",
       "Bash(git push:*)",
-      "Bash(gh pr create:*)"
+      "Bash(gh pr create:*)",
+      "Bash(bq:*)",
+      "Bash(gcloud:*)"
     ],
     "defaultMode": "auto"
   },
