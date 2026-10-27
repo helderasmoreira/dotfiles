@@ -36,8 +36,9 @@ descriptions, docs, messages, review copy.
 - Full sentences, one idea each, active voice. One term per concept, the
   code's name where it has one.
 - No AI-speak: contrast-negation ("X was never the problem. Y was."),
-  rhetorical questions, slogan headlines, double negatives, filler openers,
-  many small sections. Say the thing directly.
+  rhetorical questions, slogan headlines, fragments and punchlines, double
+  negatives, filler openers, insider terms with no introduction, many small
+  sections. Say the thing directly.
 - No em dashes. Use colons, commas, parentheses, or split sentences.
 - "AB test", never "A/B" or "A-B".
 - Lean: outcome, real constraints, precise references. Cut justification,
