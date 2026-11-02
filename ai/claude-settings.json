@@ -63,6 +63,11 @@
           {
             "type": "command",
             "command": "rtk hook claude"
+          },
+          {
+            "type": "command",
+            "command": "~/Work/dotfiles/ai/claude-hooks/bash-guard.sh",
+            "timeout": 120
           }
         ]
       }
