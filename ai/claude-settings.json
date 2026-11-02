@@ -42,7 +42,10 @@
       "Bash(gh pr review:*)",
       "Bash(gh pr edit:*)",
       "Bash(gh issue comment:*)",
-      "mcp__claude_ai_Slack__slack_send_message"
+      "mcp__claude_ai_Slack__slack_send_message",
+      "mcp__claude_ai_Slack__slack_schedule_message",
+      "mcp__claude_ai_Slack__slack_create_canvas",
+      "mcp__claude_ai_Slack__slack_update_canvas"
     ],
     "defaultMode": "auto"
   },
