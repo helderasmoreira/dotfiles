@@ -10,6 +10,23 @@ deny() {
   exit 0
 }
 
+ask() {
+  jq -n --arg r "$1" '{hookSpecificOutput:{hookEventName:"PreToolUse",permissionDecision:"ask",permissionDecisionReason:$r}}'
+  exit 0
+}
+
+gh_api_writes() {
+  if printf '%s\n' "$cmd" | grep -qE 'gh api[[:space:]]+graphql'; then
+    printf '%s\n' "$cmd" | grep -qi 'mutation'
+    return
+  fi
+  if printf '%s\n' "$cmd" | grep -qE '(-X|--method)[[:space:]=]*[A-Za-z]'; then
+    printf '%s\n' "$cmd" | grep -qiE '(-X|--method)[[:space:]=]*(POST|PUT|PATCH|DELETE)'
+    return
+  fi
+  printf '%s\n' "$cmd" | grep -qE '[[:space:]](-f|-F|--field|--raw-field|--input)([[:space:]=]|$)'
+}
+
 case "$cwd" in
   "$HOME/Work/Carwow"/*) carwow=1 ;;
   *) carwow=0 ;;
@@ -23,6 +40,10 @@ fi
 
 if [ "$carwow" = 1 ] && printf '%s\n' "$cmd" | grep -qE "${at_cmd}bundle exec"; then
   deny "Prefix 'bundle exec' with 'carwow run' in Carwow repos (carwow run bundle exec ...)."
+fi
+
+if printf '%s\n' "$cmd" | grep -qE "${at_cmd}gh api" && gh_api_writes; then
+  ask "This 'gh api' call writes to GitHub."
 fi
 
 printf '%s\n' "$cmd" | grep -qE '(^|[;&|]|\s)git commit' || exit 0
