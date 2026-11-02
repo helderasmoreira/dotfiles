@@ -37,7 +37,12 @@
       "Bash(git push:*)",
       "Bash(gh pr create:*)",
       "Bash(bq:*)",
-      "Bash(gcloud:*)"
+      "Bash(gcloud:*)",
+      "Bash(gh pr comment:*)",
+      "Bash(gh pr review:*)",
+      "Bash(gh pr edit:*)",
+      "Bash(gh issue comment:*)",
+      "mcp__claude_ai_Slack__slack_send_message"
     ],
     "defaultMode": "auto"
   },
