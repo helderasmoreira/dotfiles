@@ -8,6 +8,7 @@ Call `create_card_batch` with:
 - `column_name: "To be Defined"`
 - `stickers_to_add: ["Needs Research"]`: signals the card needs a human review before it's picked up
 - `title`: the `[<area>] <title>` line (without the `**Title:**` prefix)
+- `type_name`: the card type the user named (for example `"Ad-hoc"`), spelled exactly as on the board. Omit it when no type was named; never put the type in the title.
 - `description`: the Background / Requirements / Reviewers body **serialized to HTML**. Draft and preview the card in Markdown (step 6), since that's what renders readably in chat for the user's sign-off, then convert only at this send step, because the Kanbanize description field renders HTML and shows Markdown literally (`##`, `**`, and blank-line paragraph breaks all leak through as raw text). Mechanical conversion, same wording, only the markup changes. Convert **every** Markdown construct to its HTML equivalent (no Markdown may survive), including: `## Heading` → `<h2>Heading</h2>`, paragraphs → `<p>…</p>`, `**bold**` → `<strong>…</strong>`, `` `code` `` → `<code>…</code>`, bullet lists → `<ul><li>…</li></ul>`, `[text](url)` → `<a href="url">text</a>`, `> quote` → `<blockquote>…</blockquote>`.
 
 Use the workflow, lane, column and sticker strings exactly as written (casing matters). They're the confirmed names on board 48 as of this writing. If a call fails on an unknown lane/column/sticker/workflow, the board was likely reconfigured; re-check with `search_cards` on board "GYC - Optimus" and adjust.

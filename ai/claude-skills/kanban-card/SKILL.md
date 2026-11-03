@@ -48,6 +48,8 @@ If the user handed you a plan, a checklist, or several distinct tasks, don't sil
 
 The title is `[<area>] <title>`, where the area reflects the team's current-quarter OKRs and changes each quarter, so there's no reliable default: it must come from the user every time (you can suggest a guess, but confirm it). For a bug, suggest the area of the surface the fix changes, not the one where the bug was found. Ask it alongside the step-1 clarifying questions in one round; only ask it here, on its own, if step 1 needed no questions. Keep the title short and outcome-first.
 
+Card type is separate from the area. The board has card types (Ad-hoc, Bug, Core, Raised Issue, Design, Design improvement, …). When the user names one, set it as the card type, never as a title prefix. A typed card still carries its area prefix.
+
 ### 6. Draft the card
 
 Keep it short: Background is at most three sentences plus links; Requirements at most five top-level bullets of a sentence or two each, nested one level at most; Developer notes a short paragraph, with the reason when it isn't obvious. If it doesn't fit, it's two cards, or the detail belongs in a linked doc.
