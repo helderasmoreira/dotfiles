@@ -29,7 +29,10 @@ Claude / work-specific rules.
 ## Plans & scratch docs
 
 - Write plans/scratch to `~/Work/Carwow/claude-docs/<project>/`, never
-  inside a repo.
+  inside a repo. `<project>` is the feature, epic or investigation
+  (`car-comparison`, `homepage-search`), never the repo or team name. Reuse
+  an existing folder when the work belongs to it, even across repos.
+  Team-wide docs go in `optimus/`.
 - Keep architecture/shaping/kanban docs concise and decision-focused, not
   long and implementation-heavy. Lead with the decision, not the
   exploration.
