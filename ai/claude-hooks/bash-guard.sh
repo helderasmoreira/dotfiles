@@ -34,7 +34,7 @@ esac
 
 at_cmd='(^|[;&|(`])[[:space:]]*'
 
-if printf '%s\n' "$cmd" | grep -qE "${at_cmd}git worktree add"; then
+if [ "$carwow" = 1 ] && printf '%s\n' "$cmd" | grep -qE "${at_cmd}git worktree add"; then
   deny "Use 'carwow worktree add BRANCH' instead of plain 'git worktree add'."
 fi
 
