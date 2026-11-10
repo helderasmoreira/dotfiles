@@ -1,4 +1,7 @@
 {
+  "attribution": {
+    "commit": "Co-Authored-By: Claude <noreply@anthropic.com>"
+  },
   "permissions": {
     "allow": [
       "Read(~/Work/Carwow/claude-docs/**)",
@@ -117,8 +120,5 @@
     }
   },
   "skipWorkflowUsageWarning": true,
-  "theme": "dark",
-  "attribution": {
-    "commit": "Co-Authored-By: Claude <noreply@anthropic.com>"
-  }
+  "theme": "dark"
 }

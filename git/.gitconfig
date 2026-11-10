@@ -20,3 +20,6 @@
 	added = yellow
 	changed = red
 	untracked = cyan
+
+[filter "claude-settings"]
+	clean = jq -f ai/claude-settings-clean.jq
