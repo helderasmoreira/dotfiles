@@ -33,7 +33,15 @@
     ],
     "deny": [
       "Read(~/.ssh/**)",
-      "Read(~/.aws/**)"
+      "Read(~/.aws/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.config/gcloud/**)",
+      "Read(~/.config/algolia/**)",
+      "Read(~/.fly/**)",
+      "Read(~/.boto)",
+      "Read(~/.netrc)",
+      "Read(~/.kube/**)"
     ],
     "ask": [
       "Read(**/.env*)",
