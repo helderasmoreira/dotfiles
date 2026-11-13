@@ -91,7 +91,8 @@
     "core@carwow-factory": true,
     "sre@carwow-factory": true,
     "chrome-devtools-mcp@chrome-devtools-plugins": true,
-    "ruby-lsp@claude-plugins-official": true
+    "ruby-lsp@claude-plugins-official": true,
+    "humanizer@humanizer": true
   },
   "extraKnownMarketplaces": {
     "carwow-factory": {
@@ -104,6 +105,12 @@
       "source": {
         "source": "github",
         "repo": "ChromeDevTools/chrome-devtools-mcp"
+      }
+    },
+    "humanizer": {
+      "source": {
+        "source": "github",
+        "repo": "blader/humanizer"
       }
     }
   },
