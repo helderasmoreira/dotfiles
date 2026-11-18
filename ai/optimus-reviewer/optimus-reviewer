@@ -4,6 +4,8 @@ set -euo pipefail
 DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 CONFIG="$DIR/config.json"
 TRIGGER="/optimus-reviewer review"
+NOTICE=$'> [!NOTE]\n> 🤖 **Automated review by Claude** (optimus-reviewer). It is not an approval: it only reports problems it could confirm, and one pass can miss things.'
+FOOTER="💬 Comment \`$TRIGGER\` for another pass."
 
 REPO="$(jq -r .repo "$CONFIG")"
 CHECKOUT="$(jq -r .checkout "$CONFIG")"
@@ -82,12 +84,13 @@ review() {
         jq -r '.summary, (.findings[] | "\n\(.path):\(.line // "review body") [\(.severity), \(.category)]\n\(.body)" + (if .suggestion then "\nsuggestion:\n\(.suggestion)" else "" end)), ""' <<< "$result"
         return
       fi
-      jq --arg trigger "$TRIGGER" '{
+      jq --arg notice "$NOTICE" --arg footer "$FOOTER" '{
         commit_id: .pr.head_sha,
         event: "COMMENT",
         body: (
-          ["Automated review by Claude (optimus-reviewer). Comment `\($trigger)` for another pass.", .summary]
+          [$notice, (if .summary then "🔍 \(.summary)" else null end)]
           + [.findings[] | select(.line == null) | .body]
+          + [$footer]
           | map(select(. != null)) | join("\n\n")
         ),
         comments: [
@@ -103,8 +106,8 @@ review() {
       ;;
     clean)
       log "PR $number: nothing to report"
-      if [ "$triggered" = "true" ] && [ "$DRY_RUN" != "true" ]; then
-        gh pr comment "$url" --body "Automated review by Claude (optimus-reviewer): nothing to report at $(jq -r '.pr.head_sha[0:10]' <<< "$result")." > /dev/null
+      if [ "$DRY_RUN" != "true" ]; then
+        gh pr comment "$url" --body "$NOTICE"$'\n\n'"🔍 This pass over \`$(jq -r '.pr.head_sha[0:10]' <<< "$result")\` raised nothing."$'\n\n'"$FOOTER" > /dev/null
       fi
       ;;
     *)
