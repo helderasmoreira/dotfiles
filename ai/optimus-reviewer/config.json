@@ -1,0 +1,7 @@
+{
+  "repo": "carwow/quotes_site",
+  "checkout": "/Users/hmoreira/Work/Carwow/quotes_site",
+  "model": "opus",
+  "interval_seconds": 600,
+  "logins": ["helderasmoreira", "aiyakalnina", "ccmdo", "FriedSock"]
+}

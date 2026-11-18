@@ -1,0 +1,168 @@
+#!/bin/bash
+set -euo pipefail
+
+DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+CONFIG="$DIR/config.json"
+TRIGGER="/optimus-reviewer review"
+
+REPO="$(jq -r .repo "$CONFIG")"
+CHECKOUT="$(jq -r .checkout "$CONFIG")"
+MODEL="$(jq -r .model "$CONFIG")"
+INTERVAL="$(jq -r .interval_seconds "$CONFIG")"
+
+DRY_RUN="${DRY_RUN:-false}"
+args=()
+for arg in "$@"; do
+  if [ "$arg" = "--dry-run" ]; then DRY_RUN=true; else args+=("$arg"); fi
+done
+set -- ${args[@]+"${args[@]}"}
+export DRY_RUN
+
+BRANCH=''
+
+cleanup() {
+  [ -n "$BRANCH" ] || return 0
+  (cd "$CHECKOUT" && carwow worktree remove "$BRANCH" --force > /dev/null 2>&1) || true
+  git -C "$CHECKOUT" branch -D --quiet "$BRANCH" 2> /dev/null || true
+  BRANCH=''
+}
+
+trap cleanup EXIT
+trap 'exit 130' INT TERM
+
+log() { echo "$(date '+%Y-%m-%d %H:%M:%S') $*"; }
+
+reacted() {
+  if [ "$DRY_RUN" = "true" ] && grep -qx "$1" "${DRY_SEEN:-/dev/null}"; then echo true; return; fi
+  gh api --method GET "repos/$REPO/issues/$1/reactions" --paginate \
+    --jq "[.[] | select(.content == \"eyes\" and .user.login == \"$ME\")] | length > 0"
+}
+
+react() {
+  if [ "$DRY_RUN" = "true" ]; then echo "$1" >> "${DRY_SEEN:-/dev/null}"; return; fi
+  gh api --method POST "repos/$REPO/issues/$1/reactions" -f content=eyes --silent
+}
+
+pending_triggers() {
+  gh api --method GET "repos/$REPO/issues/$1/comments" --paginate | jq -r --arg trigger "$TRIGGER" \
+    --argjson logins "$(jq .logins "$CONFIG")" \
+    '.[] | select((.body | startswith($trigger)) and (.user.login as $l | $logins | index($l))) | .id' |
+    while read -r id; do
+      [ "$(reacted "comments/$id")" = "true" ] || echo "$id"
+    done
+}
+
+review() {
+  local number="$1" triggered="$2"
+  local url="https://github.com/$REPO/pull/$number"
+  local branch="optimus-reviewer-$number"
+  local worktree output result status
+
+  log "PR $number: reviewing $url"
+  BRANCH="$branch"
+  cleanup
+  BRANCH="$branch"
+  git -C "$CHECKOUT" fetch --quiet origin "+pull/$number/head:$branch"
+  (cd "$CHECKOUT" && carwow worktree add "$branch" > /dev/null 2>&1)
+  worktree="$(cd "$CHECKOUT" && carwow worktree path "$branch" | tail -1)"
+
+  output="$(cd "$worktree" && claude -p "/optimus-reviewer $url" --model "$MODEL" --output-format json \
+    2> >(grep -v 'blocked by enterprise policy' >&2))" || output=''
+
+  cleanup
+
+  result="$(jq -r '.result // empty' <<< "$output")"
+  status="$(jq -r '.status // empty' <<< "$result" 2> /dev/null)" || status=''
+  log "PR $number: status=${status:-invalid}"
+
+  case "$status" in
+    findings)
+      if [ "$DRY_RUN" = "true" ]; then
+        log "PR $number: dry run, would post $(jq '.findings | length' <<< "$result") findings"
+        jq -r '.summary, (.findings[] | "\n\(.path):\(.line // "review body") [\(.severity), \(.category)]\n\(.body)" + (if .suggestion then "\nsuggestion:\n\(.suggestion)" else "" end)), ""' <<< "$result"
+        return
+      fi
+      jq --arg trigger "$TRIGGER" '{
+        commit_id: .pr.head_sha,
+        event: "COMMENT",
+        body: (
+          ["Automated review by Claude (optimus-reviewer). Comment `\($trigger)` for another pass.", .summary]
+          + [.findings[] | select(.line == null) | .body]
+          | map(select(. != null)) | join("\n\n")
+        ),
+        comments: [
+          .findings[] | select(.line != null) |
+          {
+            path, line, side: "RIGHT",
+            body: (.body + (if .suggestion then "\n\n```suggestion\n\(.suggestion)\n```" else "" end))
+          }
+          + (if .start_line then {start_line, start_side: "RIGHT"} else {} end)
+        ]
+      }' <<< "$result" | gh api --method POST "repos/$REPO/pulls/$number/reviews" --input - --jq .html_url |
+        while read -r link; do log "PR $number: posted $(jq '.findings | length' <<< "$result") findings $link"; done
+      ;;
+    clean)
+      log "PR $number: nothing to report"
+      if [ "$triggered" = "true" ] && [ "$DRY_RUN" != "true" ]; then
+        gh pr comment "$url" --body "Automated review by Claude (optimus-reviewer): nothing to report at $(jq -r '.pr.head_sha[0:10]' <<< "$result")." > /dev/null
+      fi
+      ;;
+    *)
+      log "PR $number: $(jq -r '.reason // "no valid result"' <<< "$result" 2> /dev/null || echo 'no valid result')"
+      ;;
+  esac
+}
+
+sweep() {
+  local prs
+  prs="$(mktemp)"
+  ME="$(gh api user --jq .login)"
+  jq -r '.logins[]' "$CONFIG" | while read -r login; do
+    gh pr list --repo "$REPO" --state open --author "$login" --json number,isDraft --jq '.[] | "\(.number) \(.isDraft)"'
+  done > "$prs"
+  log "sweep: $(wc -l < "$prs" | tr -d ' ') open PRs"
+  while read -r number draft; do
+    first=false
+    reason="draft"
+    if [ "$draft" = "false" ]; then
+      if [ "$(reacted "$number")" = "true" ]; then reason="already reviewed (has your 👀)"; else first=true; fi
+    fi
+    triggers="$(pending_triggers "$number")"
+    if [ "$first" != "true" ] && [ -z "$triggers" ]; then
+      log "PR $number: skipped, $reason, no review request"
+      continue
+    fi
+
+    [ "$first" = "true" ] && react "$number"
+    for id in $triggers; do react "comments/$id"; done
+    if [ -n "$triggers" ]; then review "$number" true < /dev/null; else review "$number" false < /dev/null; fi
+  done < "$prs"
+  rm -f "$prs"
+}
+
+case "${1:-}" in
+  sweep)
+    sweep
+    ;;
+  review)
+    ME="$(gh api user --jq .login)"
+    review "$(basename "$2")" true
+    ;;
+  watch)
+    if [ "$DRY_RUN" = "true" ]; then
+      DRY_SEEN="$(mktemp)"
+      export DRY_SEEN
+      log "Dry run: nothing is posted and no reactions are added."
+    fi
+    log "Watching $REPO every ${INTERVAL}s for PRs by $(jq -r '.logins | join(", ")' "$CONFIG"). Ctrl-C stops."
+    while true; do
+      "$0" sweep || log "sweep failed"
+      log "next sweep in $((INTERVAL / 60)) minutes"
+      sleep "$INTERVAL"
+    done
+    ;;
+  *)
+    echo "Usage: optimus-reviewer watch | sweep | review <pr-url> [--dry-run]"
+    exit 1
+    ;;
+esac
