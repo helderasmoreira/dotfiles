@@ -5,7 +5,9 @@ DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 CONFIG="$DIR/config.json"
 LOGS="$HOME/Library/Logs/optimus-reviewer"
 TRIGGER="/optimus-reviewer review"
-NOTICE=$'> [!NOTE]\n> 🤖 **Automated review by Claude** (optimus-reviewer). It is not an approval: it only reports problems it could confirm, and one pass can miss things.'
+NOTICE=$'> [!NOTE]\n> 🤖 **Automated review by Claude** (optimus-reviewer).'
+NOTICE_FINDINGS="$NOTICE It reports only problems it could confirm, and one pass can miss others."
+NOTICE_CLEAN="$NOTICE This is not an approval: one pass can miss things."
 FOOTER="💬 Comment \`$TRIGGER\` for another pass."
 
 REPO="$(jq -r .repo "$CONFIG")"
@@ -105,7 +107,7 @@ review() {
   if [ "$status" = "clean" ]; then
     log "PR $number: nothing to report"
     [ "$DRY_RUN" = "true" ] && return 0
-    gh pr comment "$url" --body "$NOTICE"$'\n\n'"🔍 This pass over \`${sha:0:10}\` raised nothing."$'\n\n'"$FOOTER" > /dev/null || return 1
+    gh pr comment "$url" --body "$NOTICE_CLEAN"$'\n\n'"🔍 This pass over \`${sha:0:10}\` raised nothing."$'\n\n'"$FOOTER" > /dev/null || return 1
     return 0
   fi
 
@@ -117,7 +119,7 @@ review() {
 
   valid="$(mktemp)"
   commentable_lines "$number" > "$valid" || return 1
-  payload="$(jq --arg sha "$sha" --arg notice "$NOTICE" --arg footer "$FOOTER" --slurpfile valid "$valid" '
+  payload="$(jq --arg sha "$sha" --arg notice "$NOTICE_FINDINGS" --arg footer "$FOOTER" --slurpfile valid "$valid" '
     def lines: $valid[0][.path] // [];
     def inline: . as $f | lines as $ok | $f.line != null and ($ok | index($f.line)) != null
       and ($f.start_line == null or (($ok | index($f.start_line)) != null and $f.start_line < $f.line));

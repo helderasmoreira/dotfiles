@@ -58,7 +58,9 @@ One fresh Agent call, same agent, no model override. The prompt gives the PR num
 
 Keep the confirmed findings, with the `path` and `line` the verifier returned. Drop the rest and count them, with `minor` under `below_threshold`.
 
-## Step 5: Cap
+## Step 5: Merge and cap
+
+When a confirmed `false_claim` finding has the same cause as another confirmed finding, remove the `false_claim` finding and add one sentence to the end of the other finding's `body` that names the description statement it contradicts. A merged finding is not counted in `dropped`.
 
 Rank Blocking before Should fix and keep at most 5. Count what the cap removed in `dropped.over_cap`.
 
@@ -91,7 +93,7 @@ Write each `body` for the teammate who opened the PR:
 
 - One problem per finding. Two problems in the same file are two findings.
 - Report a behaviour problem as the behaviour, on the line that causes it. Do not report it as a missing spec.
-- Three full sentences at most, with at most one `file:line` each. First what goes wrong and under which input or condition. Then the evidence that was traced. Then the fix, unless it goes in `suggestion`.
+- Three full sentences at most, with at most one `file:line` each. First what goes wrong and under which input or condition. Then the evidence that was traced. Then the fix. The sentence Step 5 adds for a merged `false_claim` is a fourth.
 - Direct about the code. No "you", no praise, no hedging, no severity label, no `@mentions`. Put every identifier in backticks, instance variables included, because a bare `@name` notifies a GitHub user.
 - No em dashes, no rhetorical questions, no fragments.
 
@@ -116,7 +118,10 @@ Leave `suggestion` null. Describe the fix in the `body`.
       "suggestion": null
     }
   ],
-  "dropped": { "refuted": 0, "uncertain": 0, "below_threshold": 0, "over_cap": 0 }
+  "dropped": { "refuted": 0, "uncertain": 0, "below_threshold": 0, "over_cap": 0 },
+  "dropped_items": [
+    { "path": "", "line": null, "reason": "refuted | uncertain | below_threshold | minor | over_cap", "note": "" }
+  ]
 }
 ```
 
@@ -124,6 +129,7 @@ Leave `suggestion` null. Describe the fix in the `body`.
 - `status` is `clean` with an empty `findings` list and a null `summary` when nothing survives Step 5.
 - `summary` says what the findings have in common or which one matters most. It never describes what the review did or did not do.
 - `head_sha` is the `headRefOid` from Step 1.
+- `dropped_items` has one entry for every candidate counted in `dropped`, whatever the `status`. `note` is one sentence: what the candidate said and why it was removed. The script keeps it in the run record and never posts it.
 
 ## What not to do
 
