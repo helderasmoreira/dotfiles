@@ -3,6 +3,7 @@ set -euo pipefail
 
 DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 CONFIG="$DIR/config.json"
+LOGS="$HOME/Library/Logs/optimus-reviewer"
 TRIGGER="/optimus-reviewer review"
 NOTICE=$'> [!NOTE]\n> 🤖 **Automated review by Claude** (optimus-reviewer). It is not an approval: it only reports problems it could confirm, and one pass can miss things.'
 FOOTER="💬 Comment \`$TRIGGER\` for another pass."
@@ -54,66 +55,93 @@ pending_triggers() {
     done
 }
 
+commentable_lines() {
+  gh api --method GET "repos/$REPO/pulls/$1/files" --paginate | jq -s 'add | map({
+    key: .filename,
+    value: ((.patch // "") | split("\n") | reduce .[] as $l ({n: 0, lines: []};
+      if ($l | startswith("@@")) then .n = ($l | capture("\\+(?<start>[0-9]+)").start | tonumber)
+      elif ($l | startswith("-")) or ($l | startswith("\\")) then .
+      else .lines += [.n] | .n += 1 end) | .lines)
+  }) | from_entries'
+}
+
 review() {
-  local number="$1" triggered="$2"
+  local number="$1"
   local url="https://github.com/$REPO/pull/$number"
   local branch="optimus-reviewer-$number"
-  local worktree output result status
+  local worktree sha output result status valid payload link
 
   log "PR $number: reviewing $url"
   BRANCH="$branch"
   cleanup
   BRANCH="$branch"
-  git -C "$CHECKOUT" fetch --quiet origin "+pull/$number/head:$branch"
-  (cd "$CHECKOUT" && carwow worktree add "$branch" > /dev/null 2>&1)
+  git -C "$CHECKOUT" fetch --quiet origin "+pull/$number/head:$branch" || return 1
+  (cd "$CHECKOUT" && carwow worktree add "$branch" > /dev/null 2>&1) || return 1
   worktree="$(cd "$CHECKOUT" && carwow worktree path "$branch" | tail -1)"
+  sha="$(git -C "$worktree" rev-parse HEAD)"
+  if [ -f "$CHECKOUT/CLAUDE.md" ]; then cp "$CHECKOUT/CLAUDE.md" "$worktree/CLAUDE.md"; fi
 
   output="$(cd "$worktree" && claude -p "/optimus-reviewer $url" --model "$MODEL" --output-format json \
     2> >(grep -v 'blocked by enterprise policy' >&2))" || output=''
 
   cleanup
+  mkdir -p "$LOGS"
+  printf '%s\n' "$output" > "$LOGS/$number-$(date '+%Y%m%d-%H%M%S').json"
 
   result="$(jq -r '.result // empty' <<< "$output")"
   status="$(jq -r '.status // empty' <<< "$result" 2> /dev/null)" || status=''
-  log "PR $number: status=${status:-invalid}"
+  log "PR $number: status=${status:-invalid} dropped=$(jq -c '.dropped // {}' <<< "$result" 2> /dev/null || echo '{}')"
 
-  case "$status" in
-    findings)
-      if [ "$DRY_RUN" = "true" ]; then
-        log "PR $number: dry run, would post $(jq '.findings | length' <<< "$result") findings"
-        jq -r '.summary, (.findings[] | "\n\(.path):\(.line // "review body") [\(.severity), \(.category)]\n\(.body)" + (if .suggestion then "\nsuggestion:\n\(.suggestion)" else "" end)), ""' <<< "$result"
-        return
-      fi
-      jq --arg notice "$NOTICE" --arg footer "$FOOTER" '{
-        commit_id: .pr.head_sha,
-        event: "COMMENT",
-        body: (
-          [$notice, (if .summary then "🔍 \(.summary)" else null end)]
-          + [.findings[] | select(.line == null) | .body]
-          + [$footer]
-          | map(select(. != null)) | join("\n\n")
-        ),
-        comments: [
-          .findings[] | select(.line != null) |
-          {
-            path, line, side: "RIGHT",
-            body: (.body + (if .suggestion then "\n\n```suggestion\n\(.suggestion)\n```" else "" end))
-          }
-          + (if .start_line then {start_line, start_side: "RIGHT"} else {} end)
-        ]
-      }' <<< "$result" | gh api --method POST "repos/$REPO/pulls/$number/reviews" --input - --jq .html_url |
-        while read -r link; do log "PR $number: posted $(jq '.findings | length' <<< "$result") findings $link"; done
-      ;;
-    clean)
-      log "PR $number: nothing to report"
-      if [ "$DRY_RUN" != "true" ]; then
-        gh pr comment "$url" --body "$NOTICE"$'\n\n'"🔍 This pass over \`$(jq -r '.pr.head_sha[0:10]' <<< "$result")\` raised nothing."$'\n\n'"$FOOTER" > /dev/null
-      fi
-      ;;
-    *)
-      log "PR $number: $(jq -r '.reason // "no valid result"' <<< "$result" 2> /dev/null || echo 'no valid result')"
-      ;;
-  esac
+  if [ "$status" != "findings" ] && [ "$status" != "clean" ]; then
+    log "PR $number: $(jq -r '.reason // "no valid result"' <<< "$result" 2> /dev/null || echo 'no valid result')"
+    return 1
+  fi
+
+  if [ "$(gh pr view "$number" --repo "$REPO" --json headRefOid --jq .headRefOid)" != "$sha" ]; then
+    log "PR $number: the head moved during the review, nothing posted"
+    return 1
+  fi
+
+  if [ "$status" = "clean" ]; then
+    log "PR $number: nothing to report"
+    [ "$DRY_RUN" = "true" ] && return 0
+    gh pr comment "$url" --body "$NOTICE"$'\n\n'"🔍 This pass over \`${sha:0:10}\` raised nothing."$'\n\n'"$FOOTER" > /dev/null || return 1
+    return 0
+  fi
+
+  if [ "$DRY_RUN" = "true" ]; then
+    log "PR $number: dry run, would post $(jq '.findings | length' <<< "$result") findings"
+    jq -r '.summary, (.findings[] | "\n\(.path):\(.line // "review body") [\(.severity), \(.category)]\n\(.body)"), ""' <<< "$result"
+    return 0
+  fi
+
+  valid="$(mktemp)"
+  commentable_lines "$number" > "$valid" || return 1
+  payload="$(jq --arg sha "$sha" --arg notice "$NOTICE" --arg footer "$FOOTER" --slurpfile valid "$valid" '
+    def lines: $valid[0][.path] // [];
+    def inline: . as $f | lines as $ok | $f.line != null and ($ok | index($f.line)) != null
+      and ($f.start_line == null or (($ok | index($f.start_line)) != null and $f.start_line < $f.line));
+    {
+      commit_id: $sha,
+      event: "COMMENT",
+      body: (
+        [$notice, (if .summary then "🔍 \(.summary)" else null end)]
+        + [.findings[] | select(inline | not) | (if .line then "`\(.path):\(.line)`: " else "" end) + .body]
+        + [$footer]
+        | map(select(. != null)) | join("\n\n")
+      ),
+      comments: [
+        .findings[] | select(inline) |
+        {path, line, side: "RIGHT", body} + (if .start_line then {start_line, start_side: "RIGHT"} else {} end)
+      ]
+    }' <<< "$result")" || return 1
+  rm -f "$valid"
+
+  link="$(gh api --method POST "repos/$REPO/pulls/$number/reviews" --input - --jq .html_url <<< "$payload")" || {
+    log "PR $number: GitHub rejected the review"
+    return 1
+  }
+  log "PR $number: posted $(jq '.findings | length' <<< "$result") findings $link"
 }
 
 sweep() {
@@ -136,9 +164,12 @@ sweep() {
       continue
     fi
 
-    [ "$first" = "true" ] && react "$number"
-    for id in $triggers; do react "comments/$id"; done
-    if [ -n "$triggers" ]; then review "$number" true < /dev/null; else review "$number" false < /dev/null; fi
+    if review "$number" < /dev/null; then
+      if [ "$first" = "true" ]; then react "$number"; fi
+      for id in $triggers; do react "comments/$id"; done
+    else
+      log "PR $number: not marked as reviewed, the next sweep retries it"
+    fi
   done < "$prs"
   rm -f "$prs"
 }
@@ -148,8 +179,7 @@ case "${1:-}" in
     sweep
     ;;
   review)
-    ME="$(gh api user --jq .login)"
-    review "$(basename "$2")" true
+    review "$(basename "$2")"
     ;;
   watch)
     if [ "$DRY_RUN" = "true" ]; then
