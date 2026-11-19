@@ -60,7 +60,7 @@ Keep the confirmed findings, with the `path` and `line` the verifier returned. D
 
 ## Step 5: Merge and cap
 
-When a confirmed `false_claim` finding has the same cause as another confirmed finding, remove the `false_claim` finding and add one sentence to the end of the other finding's `body` that names the description statement it contradicts. A merged finding is not counted in `dropped`.
+When a confirmed `false_claim` finding has the same cause as another confirmed finding, remove the `false_claim` finding and add one sentence before the fix in the other finding's `body` that names the description statement it contradicts. The merged `body` can run to 60 words. A merged finding is not counted in `dropped`.
 
 Rank Blocking before Should fix and keep at most 5. Count what the cap removed in `dropped.over_cap`.
 
@@ -89,13 +89,16 @@ Both reviewer prompts carry these:
 
 ## Comment wording
 
-Write each `body` for the teammate who opened the PR:
+Write each `body` for the teammate who opened the PR, the way a teammate would leave a review comment:
 
 - One problem per finding. Two problems in the same file are two findings.
 - Report a behaviour problem as the behaviour, on the line that causes it. Do not report it as a missing spec.
-- Three full sentences at most, with at most one `file:line` each. First what goes wrong and under which input or condition. Then the evidence that was traced. Then the fix. The sentence Step 5 adds for a merged `false_claim` is a fourth.
-- Direct about the code. No "you", no praise, no hedging, no severity label, no `@mentions`. Put every identifier in backticks, instance variables included, because a bare `@name` notifies a GitHub user.
-- No em dashes, no rhetorical questions, no fragments.
+- 50 words at most, in two to four sentences, plus the one Step 5 adds for a merged `false_claim`. Put each sentence on its own line, separated by a single newline.
+- First, what goes wrong and when, stated as fact. Give the evidence as one fact with at most one `file:line`, joined with "because" or as the next sentence. Do not retell the trace.
+- Last, one fix asked as a question: "Could we …?" or "Should we …?". When the repo already does it elsewhere, name that place. No alternatives, no side benefits.
+- Start a `should_fix` body with "Non-blocking: ". A `convention` finding quotes the `CLAUDE.md` rule and ends with "What do you think?".
+- No "I", no "you", no praise, no emoji, and no hedging on the problem ("maybe", "I think", "right?"). No `@mentions`. Put every identifier in backticks, instance variables included, because a bare `@name` notifies a GitHub user.
+- No em dashes and no fragments.
 
 Leave `suggestion` null. Describe the fix in the `body`.
 
@@ -106,7 +109,7 @@ Leave `suggestion` null. Describe the fix in the `body`.
   "status": "findings | clean | error",
   "reason": null,
   "pr": { "url": "", "number": 0, "head_sha": "" },
-  "summary": "One or two sentences for the review body.",
+  "summary": "One sentence for the review body, or null.",
   "findings": [
     {
       "path": "app/presenters/foo_presenter.rb",
@@ -127,7 +130,7 @@ Leave `suggestion` null. Describe the fix in the `body`.
 
 - `line` is a line number in the new version of the file that falls inside a diff hunk for that file, either an added line or a context line. `start_line` is set only for a multi-line comment, and is lower than `line` and in the same hunk. When the finding has no such line (a caller outside the diff, something the change removed), set `line` to null and name the `file:line` in the `body`.
 - `status` is `clean` with an empty `findings` list and a null `summary` when nothing survives Step 5.
-- `summary` says what the findings have in common or which one matters most. It never describes what the review did or did not do.
+- `summary` is null when there is one finding. With more than one, it is one sentence naming the finding that matters most. It never describes what the review did or did not do.
 - `head_sha` is the `headRefOid` from Step 1.
 - `dropped_items` has one entry for every candidate counted in `dropped`, whatever the `status`. `note` is one sentence: what the candidate said and why it was removed. The script keeps it in the run record and never posts it.
 
