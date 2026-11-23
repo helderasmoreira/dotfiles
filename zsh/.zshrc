@@ -28,3 +28,6 @@ PATH=$PATH:$HOME/Work/Carwow/dev-environment/bin
 ### END carwow dev
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# Claudia shell helpers (`claudia` from anywhere; `claudia codex|claude|grok|voice` selects a surface)
+[ -f "$HOME/.claudia/shell-init.sh" ] && source "$HOME/.claudia/shell-init.sh"
