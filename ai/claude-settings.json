@@ -92,14 +92,16 @@
     "sre@carwow-factory": true,
     "chrome-devtools-mcp@chrome-devtools-plugins": true,
     "ruby-lsp@claude-plugins-official": true,
-    "humanizer@humanizer": true
+    "humanizer@humanizer": true,
+    "optimus@carwow-factory": true
   },
   "extraKnownMarketplaces": {
     "carwow-factory": {
       "source": {
         "source": "git",
         "url": "git@github.com:carwow/factory.git"
-      }
+      },
+      "autoUpdate": true
     },
     "chrome-devtools-plugins": {
       "source": {
