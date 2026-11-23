@@ -15,6 +15,7 @@ eval "$(mcfly init zsh)"
 eval "$(rbenv init - zsh)"
 
 export PATH="$HOME/.local/bin:$PATH"
+export OPTIMUS_REVIEWER_CHECKOUT="$HOME/Work/Carwow/quotes_site"
 
 ### BEGIN carwow dev
 
