@@ -38,3 +38,19 @@ link ai/claude-skills ~/.claude/skills
 link ai/claude-agents ~/.claude/agents
 link ai/opencode.json ~/.config/opencode/opencode.json
 link ai/carwow.md ~/Work/Carwow/CLAUDE.md
+
+agent() {
+  local src="$DOTFILES/$1" dest="$HOME/Library/LaunchAgents/$(basename "$1")"
+
+  if cmp -s "$src" "$dest"; then
+    echo "ok      $dest"
+    return
+  fi
+
+  launchctl bootout "gui/$(id -u)" "$dest" 2>/dev/null || true
+  cp "$src" "$dest"
+  launchctl bootstrap "gui/$(id -u)" "$dest"
+  echo "loaded  $dest"
+}
+
+agent launchd/local.claude-docs-snapshot.plist
