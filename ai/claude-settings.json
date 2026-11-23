@@ -115,6 +115,14 @@
     }
   },
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-fable-5-2": {
+      "effortLevel": "high"
+    }
+  },
   "skipWorkflowUsageWarning": true,
   "theme": "dark"
 }
