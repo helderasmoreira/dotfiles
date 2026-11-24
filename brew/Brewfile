@@ -1,4 +1,5 @@
 tap "anomalyco/tap"
+tap "stablyai/orca"
 brew "autojump"
 brew "awscli"
 brew "coreutils"
@@ -28,6 +29,7 @@ cask "logi-options+"
 cask "meetingbar"
 cask "postico"
 cask "spotify"
+cask "stablyai/orca/orca", trusted: true
 cask "sublime-merge"
 cask "sublime-text"
 cask "teamviewer"
