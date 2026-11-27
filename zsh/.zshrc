@@ -28,9 +28,6 @@ PATH=$PATH:$HOME/Work/Carwow/dev-environment/bin
 
 ### END carwow dev
 
-### Adding Orca to the path
-export PATH="/Applications/Orca.app/Contents/Resources/bin:$PATH"
-
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 # Claudia shell helpers (`claudia` from anywhere; `claudia codex|claude|grok|voice` selects a surface)
